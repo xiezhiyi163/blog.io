@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<style type="text/css">
+			.table {
+				display: table;
+				background-color: cornflowerblue;
+			}
+			.tableCell {
+				display: table-cell;
+				text-align: center;
+				vertical-align: top;
+			}
+			.tl>div,.tr>div {
+				width: 200px;
+			}
+			.tableCell-w1vh {
+				width:100%;
+			}
+			.tm {
+				background-color: slateblue;
+			}
+			.tm>div{
+				height: 30px;
+				background-color: coral;
+			}
+			.flex {
+				display: flex;
+				text-align: center;
+				background-color: cornflowerblue;
+			}
+			.fl>div,.fr>div {
+				width: 200px;
+			}
+			.fm {				
+				width: 100%;
+				background-color: slateblue;
+			}
+			.fm>div{
+				/* width: 0; */
+				height: 30px;
+				background-color: coral;
+			}
+		</style>
+		<style type="text/css">
+			.flex1 {
+				display: flex;
+				flex-wrap:wrap; 
+			}
+			.flex1item {
+				flex:0 0 25%;
+				margin-bottom: 10px;
+			}
+			.flex1item>div {
+				height: 30px;
+				margin: 0 10px;
+				background-color: coral;
+			}
+			.bothsize_center:after{
+				display: block;
+				content: '';
+				clear: both;
+			}
+			.bothsizeL,.bothsizeR{
+				width: 50%;height:50px;float: left;background-color: coral;position: relative;
+			}
+			.bothsizeL{
+				z-index: 1;
+			}
+			.bothsizeL>div{
+				width: 50px;height: 50px;position:absolute;top:0;right:-25px;background-color: slateblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="max-width: 1200px;margin: auto;padding:20px;">
+			<h1>常用的响应式总结（重点讲table跟flex）</h1>
+			<hr style="height: 1px;background-color: #333333;margin-top: 15px;margin-bottom: 40px;"/>
+			<h3 style="margin-bottom: 30px;">table演示</h3>
+			<p style="margin-bottom: 30px;">原理基本是display的table和tablecell属性分别设置，然后tablecell属性设置顶部对齐,弊端就是不换行的时候容易把自适应元素给挤宽，造成布局容易变形，但这种布局方法和media响应式适用于pc端，兼容性好，media响应式只需要外部引入个文件即可兼容到ie8//<br/>以下演示用了table相关css</p>
+			<div>
+				<div class="table">
+					<div class="tl tableCell">
+						<div>l</div>
+					</div>
+					<div class="tm tableCell tableCell-w1vh">
+						<div></div>
+						m
+					</div>
+					<div class="tr tableCell">
+						<div>r</div>
+					</div>
+				</div>
+			</div>
+			<h3 style="margin-bottom: 30px;margin-top: 30px;">flex基本演示</h3>
+			<p style="margin-bottom: 30px;">原理基本是父元素display的flex设置，然后子元素固定宽度如果想不出问题，得要给子元素里面的容器设置宽度，跟table布局一样，然后也是不换行会因为长度过长挤出，所以table跟flex如果想限制宽度并不换行，只能使用js来进行设定了<br/>以下演示用了flex相关css</p>
+			<div>
+				<div class="flex">
+					<div class="fl flexitem">
+						<div>l</div>
+					</div>
+					<div class="fm flexitem">
+						<div></div>
+						m
+					</div>
+					<div class="fr flexitem">
+						<div>r</div>
+					</div>
+				</div>
+			</div>
+			<h3 style="margin-bottom: 30px;margin-top: 30px;">附：flex相同宽度时的情况</h3>
+			<p style="margin-bottom: 30px;">需要注意的是，如果要实现两边贴紧，需要做个宽度差，用js控制宽度<br/>以下演示用了flex相关css</p>
+			<div>
+				<div>
+					<div class="flex1">
+						<div class="flex1item">
+							<div></div>
+						</div>
+						<div class="flex1item">
+							<div></div>
+						</div>
+						<div class="flex1item">
+							<div></div>
+						</div>
+						<div class="flex1item">
+							<div></div>
+						</div>
+						<div class="flex1item">
+							<div></div>
+						</div>
+						<div class="flex1item">
+							<div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h3 style="margin-bottom: 30px;margin-top: 30px;">两边自适应中间固定的情况</h3>
+			<div class="bothsize_center">
+				<div class="bothsizeL">
+					<div></div>
+				</div>
+				<div class="bothsizeR"></div>
+			</div>
+		</div>
+	</body>
+</html>

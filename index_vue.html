@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<style type="text/css">
+			.main{
+				font-size: 24px;
+			}
+			.main>p{
+				margin:0 0 20px;
+				white-space: pre-line;				
+			}
+		</style>
+	</head>
+	<body>
+		<div style="max-width: 1200px;margin: auto;padding:20px;">
+			<h1>对Vue和Vue开发流程的理解</h1>
+			<hr style="height: 1px;background-color: #333333;margin-top: 15px;margin-bottom: 40px;"/>
+			<div class="main">
+				我个人对vue的理解主要有以下的方面:
+				<p>
+				vue的数据处理模式MVVM的理解，vue的开发流程的理解。
+				以下是vue开发流程中需要理解到的一些东西：
+				</p>
+				<p>
+				1.vue包括要用到的一些基本内容以及一些可能用到的钩子的区别：
+				</p>
+				<p>				
+				&nbsp;&nbsp;&nbsp;&nbsp;VUE主要包括的基本的vue初始化，然后vue路由，vue缓存机制，axios请求依赖，还有vue的状态化管理vuex
+				&nbsp;&nbsp;&nbsp;&nbsp;VUE比较主要的是遍历，过滤，传值和监听的使用，然后得要理解computed，watch钩子之间的区别，知道缓存机制下生成的另外两个钩子函数
+				</p>
+				<p>
+				2.理解vuex状态化管理的钩子以及它的优势：
+				&nbsp;&nbsp;&nbsp;&nbsp;state是储存数据的，mutation是触发修改state的钩子函数，action可以做到异步调用mutation方法来修改数据；
+				&nbsp;&nbsp;&nbsp;&nbsp;优势就在于它能够在不刷新页面的情况下可以做到把数据保存起来放到每个页面去使用，每个页面的state数据都指向于vuex的state，通过修改state的数据，来修改每个页面存在的state的数据；
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
