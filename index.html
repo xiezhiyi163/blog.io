@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<title></title>
+		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="static/common/schedule带日程/new_file.css"/>
 		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
 		<style type="text/css">
 			/* *pagecss */
 			html,body{
@@ -37,6 +38,9 @@
 			#lefts {
 				width: 220px;
 				background-color: #274d93;
+				/* box-shadow: 0 0 20px 20px #888; */
+				position: relative;
+				z-index: 1;
 			}
 			/* avatar */
 			.avatar {
@@ -45,11 +49,10 @@
 				background-color: white;
 				margin: auto;
 				border-radius: 50%;
-				margin-top: 30px;
 			}
 			.avatarName{
 				text-align: center;
-				padding:20px 30px 40px;
+				padding:20px 30px 30px;
 				color: white;
 				font-weight: bolder;
 			}
@@ -138,6 +141,9 @@
 			#righttop{/*里面的内容强制不换行导致该容器在table cell的情况下无法自适应调整margin和padding*/
 				height: 60px;
 				background-color: #00BDFF;
+				/* box-shadow: 20px 0 20px 10px #888; */
+				position: relative;
+				z-index: 1;
 			}
 			#rightcont{
 				position: relative;
@@ -151,15 +157,20 @@
 				<!-- *左 -->
 				<div class="settableCellL" id="lefts">
 					<!-- 头像 -->
-					<div>
-						<div class="avatar"></div>
+					<div style="background-color: #68276c;padding-top: 30px;margin-bottom: 30px;">
+						<div>
+							<div class="avatar"></div>
+						</div>
+						<div class="avatarName">
+							<i class="fa fa-user" style="margin-right: 10px;"></i>
+							xiezhiyi163
+						</div>						
 					</div>
-					<div class="avatarName">xiezhiyi163</div>
 					<!-- 日历 -->
 					<div style="margin: 0 15px;">
 						<div id='schedule-box' class="boxshaw"></div>
 					</div>
-					<div style="text-align: center;padding: 30px 20px 0;color: white;">欢迎到访，这里是xiezhiyi163的专属定制博客=V=，博主已从事前端开发有{{datenum}}年，已积累了大量的前端包括vue和react的开发经验和手机端适配经验</div>
+					<div style="padding: 30px 20px 0;color: white;font-size: 14px;word-break: break-all;">欢迎到访，这里是xiezhiyi163的专属定制博客=V=，博主已从事前端开发有{{datenum+2}}年，已积累了大量的前端包括vue和react的开发经验和手机端适配经验</div>
 				</div>
 				<!-- *右 -->
 				<div class="settableCell" id="rights">
@@ -168,21 +179,23 @@
 							<span @click="navleft()" id="rightnavleft" style="position: absolute;left: -25px;top: 22px;"><</span>
 							<div id="rightnav" style="padding-top: 20px;position: relative;overflow: hidden;min-width: 428px;">
 								<div id="rightnavin" style="white-space: nowrap;display: inline-block;position: relative;">
-									<span @click="linktype = '2';flink = v.link;" v-for="(v,i) in navlist" style="margin-right: 30px;cursor: pointer;" :style="flink == v.link&&linktype=='2'?'color:#1a33e1':''">{{v.v}}</span>
+									<span @click="linktype = '2';flink = v.link;" v-for="(v,i) in navlist" style="margin-right: 30px;cursor: pointer;" :style="flink == v.link&&linktype=='2'?'color:#1a33e1':''">
+										<i class="fa fa-file" style="margin-right: 10px;"></i>{{v.v}}
+									</span>
 								</div>
 							</div>
 							<span @click="navright()" id="rightnavright" style="position: absolute;right: 45px;top: 22px;">></span>
 						</div>
 					</div>
-					<div id="toOs" style="float: right;width: 60px;height: 60px;background-color: coral;margin-top: -60px;line-height: 70px;font-size: 190px;color: white;text-align: center;position: relative;">
+					<div id="toOs" style="float: right;width: 60px;height: 60px;background-color: coral;margin-top: -60px;line-height: 65px;font-size: 30px;color: white;text-align: center;position: relative;z-index: 2;" title="桌面系统演示">
 						<div id="toOsin" style="position: absolute;width: 60px;height: 60px;top: 0;left: 0;" @click="setoslink('https:\/\/xiezhiyi163.github.io\/webos.github.io\/')"></div>
-						·
+						<i class="fa fa-laptop"></i>
 					</div>
 					<div id="rightcont">
 						<div style="width: 100%;overflow: hidden;" :style="linktype == '2'?'height:100%':'height:0'">
 							<iframe :src="flink" width="100%" height="100%" frameborder="0"></iframe>
 						</div>						
-						<div style="width: 100%;overflow: hidden;" :style="linktype == '1'?'height:100%':'height:0'">
+						<div style="width: 100%;overflow: hidden;position: relative;z-index: 2;" :style="linktype == '1'?'height:100%':'height:0'">
 							<iframe :src="flink2" width="100%" height="100%" frameborder="0"></iframe>
 						</div>						
 					</div>

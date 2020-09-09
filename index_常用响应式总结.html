@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
 		<style type="text/css">
 			.table {
 				display: table;
@@ -77,10 +78,10 @@
 	</head>
 	<body>
 		<div style="max-width: 1200px;margin: auto;padding:20px;">
-			<h1>常用的响应式总结（重点讲table跟flex）</h1>
+			<h1 style="color: #6c60b4;"><i class="fa fa-file-text-o" style="margin-right: 20px;"></i>常用的响应式总结（重点讲table跟flex）</h1>
 			<hr style="height: 1px;background-color: #333333;margin-top: 15px;margin-bottom: 40px;"/>
-			<h3 style="margin-bottom: 30px;">table演示</h3>
-			<p style="margin-bottom: 30px;">原理基本是display的table和tablecell属性分别设置，然后tablecell属性设置顶部对齐,弊端就是不换行的时候容易把自适应元素给挤宽，造成布局容易变形，但这种布局方法和media响应式适用于pc端，兼容性好，media响应式只需要外部引入个文件即可兼容到ie8//<br/>以下演示用了table相关css</p>
+			<h3 style="margin-bottom: 30px;">table演示：</h3>
+			<p style="margin-bottom: 30px;text-indent: 32px;">原理基本是display的table和tablecell属性分别设置，然后tablecell属性设置顶部对齐,弊端就是不换行的时候容易把自适应元素给挤宽，造成布局容易变形，但这种布局方法和media响应式适用于pc端，兼容性好，media响应式只需要外部引入个文件即可兼容到ie8//<br/>以下演示用了table相关css</p>
 			<div>
 				<div class="table">
 					<div class="tl tableCell">
@@ -95,8 +96,8 @@
 					</div>
 				</div>
 			</div>
-			<h3 style="margin-bottom: 30px;margin-top: 30px;">flex基本演示</h3>
-			<p style="margin-bottom: 30px;">原理基本是父元素display的flex设置，然后子元素固定宽度如果想不出问题，得要给子元素里面的容器设置宽度，跟table布局一样，然后也是不换行会因为长度过长挤出，所以table跟flex如果想限制宽度并不换行，只能使用js来进行设定了<br/>以下演示用了flex相关css</p>
+			<h3 style="margin-bottom: 30px;margin-top: 30px;">flex基本演示：</h3>
+			<p style="margin-bottom: 30px;text-indent: 32px;">原理基本是父元素display的flex设置，然后子元素固定宽度如果想不出问题，得要给子元素里面的容器设置宽度，跟table布局一样，然后也是不换行会因为长度过长挤出，所以table跟flex如果想限制宽度并不换行，只能使用js来进行设定了<br/>以下演示用了flex相关css</p>
 			<div>
 				<div class="flex">
 					<div class="fl flexitem">
@@ -111,8 +112,8 @@
 					</div>
 				</div>
 			</div>
-			<h3 style="margin-bottom: 30px;margin-top: 30px;">附：flex相同宽度时的情况</h3>
-			<p style="margin-bottom: 30px;">需要注意的是，如果要实现两边贴紧，需要做个宽度差，用js控制宽度<br/>以下演示用了flex相关css</p>
+			<h3 style="margin-bottom: 30px;margin-top: 30px;">附：flex相同宽度时的情况：</h3>
+			<p style="margin-bottom: 30px;text-indent: 32px;">需要注意的是，如果要实现两边贴紧，需要做个宽度差，用js控制宽度<br/>以下演示用了flex相关css</p>
 			<div>
 				<div>
 					<div class="flex1">
@@ -137,7 +138,7 @@
 					</div>
 				</div>
 			</div>
-			<h3 style="margin-bottom: 30px;margin-top: 30px;">两边自适应中间固定的情况</h3>
+			<h3 style="margin-bottom: 30px;margin-top: 30px;">两边自适应中间固定的情况：</h3>
 			<div class="bothsize_center">
 				<div class="bothsizeL">
 					<div></div>
