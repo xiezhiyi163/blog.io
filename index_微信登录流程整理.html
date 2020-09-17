@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<style type="text/css">
+			.main{
+				font-size: 24px;
+			}
+			.main>p{
+				margin:0 0 20px;
+				white-space: pre-line;				
+			}
+		</style>
+	</head>
+	<body>
+		<div style="max-width: 1200px;margin: auto;padding:20px;">
+			<h1 style="color: #6c60b4;"><i class="fa fa-file-text-o" style="margin-right: 20px;"></i>微信网页端和小程序端的登录流程整理</h1>
+			<hr style="height: 1px;background-color: #333333;margin-top: 15px;margin-bottom: 40px;"/>
+			<div class="main">
+				尽量通过cookie或唯一的标识（小程序)去获取对应用户的数据一般有下列三种情况
+				<p>
+					1.无标识，跳到登录页请求标识然后返回拿数据
+					2.过期，跳到登录页请求标识然后返回拿数据
+					3.有效，直接拿数据
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
