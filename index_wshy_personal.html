@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/navbar.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/mescroll/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/index_wshy_personal/base.css"/>
+	</head>
+	<body>
+		<div id="app" style="max-width: 750px;margin: auto;visibility: hidden;">
+			<div class="toppart">
+				<div>
+					<div>
+						<div class="searchinput">
+							<i class="search fa fa-search"></i>
+							<input type="text" placeholder="请输入关键词搜索">
+						</div>							
+						<div class="searchcommon">
+							<div class="searchinfo" style="float: left;">
+								<p>按分类查看<i class="typemenu fa fa-bars" style="line-height: 0.11rem;"></i></p>
+								<p @click="change('p')">价格<i :class="'fa fa-sort-'+pricesort" :style="pricesort=='down'?'position: relative;top:-0.11rem':''"></i></p>
+								<p @click="change('s')">评分<i :class="'fa fa-sort-'+starsort" :style="starsort=='down'?'position: relative;top:-0.11rem':''"></i></p>
+								<div class="delicon" @click="editdeldone = !editdeldone;ifshowdel = !ifshowdel;ifshowdel==false?nocheck(0):'';">
+									<i class="fa" :class="ifshowdel?'':'fa-trash'" style="line-height: 0.13rem;margin-right: -0.0rem;">{{ifshowdel?'取消':''}}</i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="mesapp" class="mescroll">
+				<div style="max-width: 750px;margin: auto;">
+					<i style="display: block;height: 0.1rem;"></i>
+					<!-- 内容,左右做浮动，外容器清除，图文之外的大的容器做浮动，只有图片的时候，循环那层容器变成块状元素 -->
+					<div v-for="(v,i) in items" :style="v.dec==''&&v.imgs!=''?'display:inline-block;':''" onclick="javascript:location.href = 'index_wshy_detail.html'">
+						<div v-if="v.dec!=''&&v.imgs!=''">
+							<div class="times" @click.stop=" ">
+								<span>2020-03-05&nbsp;&nbsp;发布</span>
+								<span style="float: right;padding-left: 0.2rem;"><i class="fa fa-pencil"></i></span>
+							</div>
+							<div class="itemwrap">
+								<i v-if="ifshowdel" class="fa" :class="v.checks?'fa-check-square':'fa-square-o'" @click.stop="ifcheck(i)"></i>
+								<div class="item itemradius">
+									<div class="itemimg">
+										<img :src="v.imgs" alt="">
+									</div>
+									<div class="iteminfo">
+										<div class="itembuiness">
+											<p>
+												<img :src="v.imgs" alt="">
+											</p>
+											<span>商家名字buinesstitle</span>
+										</div>
+										<p>{{v.dec}}</p>
+										<span class="price">￥{{v.price}}</span>
+										<span class="share">一键转发</span>
+									</div>
+								</div>								
+							</div>
+						</div>
+						<div v-if="v.dec==''&&v.imgs!=''"  style="float: left;">
+							<div class="itemwrap">
+								<div class="itemimg imgonly itemradius">
+									<img :src="v.imgs" alt="">
+								</div>
+							</div>
+						</div>
+						<div v-if="v.dec!=''&&v.imgs==''" style="float: left;">
+							<div class="times" style="margin-right: 0;" @click.stop=" ">
+								<span>2020-03-05&nbsp;&nbsp;发布</span>
+								<span style="float: right;padding-left: 0.2rem;"><i class="fa fa-pencil"></i></span>
+							</div>
+							<div class="itemwrap" style="height: auto;">
+								<i class="fa" v-if="ifshowdel" style="margin-right: -0.2rem;" :class="v.checks?'fa-check-square':'fa-square-o'" @click.stop="ifcheck(i)"></i>
+								<div class="iteminfo deconly itemradius">
+									<p>{{v.dec}}</p>
+								</div>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
+						<div v-if="v.sevice.length!=0">
+							<div style="margin: -0.1rem 0.2rem 0.3rem;background-color: white;padding: 0.3rem;border-radius: 0.1rem;">
+								<span v-for="vs in v.sevice">
+									<i class="fa fa-hand-o-right"></i>&nbsp;&nbsp;{{vs==1?'7天无条件退换':''}}
+									{{vs==2?'1年保修':''}}
+									{{vs==3?'商家担保':''}}&nbsp;&nbsp;
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<i style="display: block;height: 0.8rem;"></i>
+			</div>
+			<!-- 遮罩层 -->
+			<div class="fixwrap" v-if="ifshowdel">
+				<div class="fix-allcheck">
+					全选<i class="allcheck fa" :class="allcheck?'fa-check-square':'fa-square-o'" @click="ifallcheck"></i>
+				</div>
+				<div class="fix-trulydel" @click="editdeldone = !editdeldone;ifshowdel = !ifshowdel;ifshowdel==false?nocheck(1):'';">
+					确认
+				</div>
+			</div>
+			<!-- 底部导航栏 -->
+			<div class="navbars">
+				<div onclick="javascript:window.location.replace('index_wshy_index.html')">
+					<p><i class="fa fa-home"></i></p>
+					<div>首页</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_dynamic.html')">
+					<p><i class="fa fa-ellipsis-h"></i></p>
+					<div>动态</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_shopcar.html')">
+					<p><i class="fa fa-shopping-cart"></i></p>
+					<div>购物车</div>
+				</div>
+				<div lang="active">
+					<p><i class="fa fa-user"></i></p>
+					<div>我的</div>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/mescroll/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/index_wshy_personal/base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

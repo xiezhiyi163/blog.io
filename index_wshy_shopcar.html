@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/navbar.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/mescroll/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/index_wshy_shopcar/base.css"/>
+	</head>
+	<body>
+		<div id="app" style="max-width: 750px;margin: auto;visibility: hidden;">
+			<div class="toppart">
+				<div>
+					<div>
+						<i class="allcheck fa" :class="allcheck?'fa-check-square':'fa-square-o'" @click="ifallcheck"></i>
+						购物车
+						<i class="edit fa" :class="editchange" @click="delitems('c')">{{editchange != 'fa-pencil'?'取消':''}}</i>
+					</div>
+				</div>
+			</div>
+			<div id="mesapp" class="mescroll">
+				<div style="max-width: 750px;margin: auto;">
+					<i style="display: block;height: 0.3rem;"></i>
+					<!-- 内容,左右做浮动，外容器清除，图文之外的大的容器做浮动，只有图片的时候，循环那层容器变成块状元素 -->
+					<div v-for="(v,i) in items" :style="v.dec==''&&v.imgs!=''?'display:inline-block;':''" onclick="javascript:location.href = 'index_wshy_detail.html'">
+						<div v-if="v.dec!=''&&v.imgs!=''">
+							<div class="itemwrap">
+								<i class="fa" :class="v.checks?'fa-check-square':'fa-square-o'" @click.stop="ifcheck(i)"></i>
+								<div class="item itemradius">
+									<div class="itemimg">
+										<img :src="v.imgs" alt="">
+									</div>
+									<div class="iteminfo">
+										<div class="itembuiness">
+											<p>
+												<img :src="v.imgs" alt="">
+											</p>
+											<span>商家名字buinesstitle</span>
+										</div>
+										<p>{{v.dec}}</p>
+										<span class="price">￥{{v.price}}</span>
+										<div class="share">
+											<div>
+												<span class="numadd">+</span>
+												<span class="numinput">
+													<input type="number" min="0" max="100" v-model="shopnum"/>
+												</span>
+												<span class="numdown">-</span>												
+											</div>
+										</div>
+									</div>
+								</div>								
+							</div>
+						</div>
+						<div v-if="v.dec==''&&v.imgs!=''"  style="float: left;">
+							<div class="itemwrap">
+								<div class="itemimg imgonly itemradius">
+									<img :src="v.imgs" alt="">
+								</div>
+							</div>
+						</div>
+						<div v-if="v.dec!=''&&v.imgs==''" style="float: left;">
+							<div class="itemwrap" style="height: auto;">
+								<div class="iteminfo deconly itemradius">
+									<p>{{v.dec}}</p>
+								</div>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
+						<div v-if="v.sevice.length!=0">
+							<div style="margin: -0.1rem 0.2rem 0.3rem;background-color: white;padding: 0.3rem;border-radius: 0.1rem;">
+								<span v-for="vs in v.sevice">
+									<i class="fa fa-hand-o-right"></i>&nbsp;&nbsp;{{vs==1?'7天无条件退换':''}}
+									{{vs==2?'1年保修':''}}
+									{{vs==3?'商家担保':''}}&nbsp;&nbsp;
+								</span>
+							</div>
+						</div>
+					</div>
+					<i style="display: block;height: 0.8rem;"></i>
+				</div>
+			</div>
+			<!-- 遮罩层 -->
+			<div class="bottomfixwrap">
+				<div class="title_price" v-if="editchange == 'fa-pencil'">
+					<div>商品总价：<span>￥99999.00</span></div>
+				</div>
+				<div class="submit" v-if="editchange == 'fa-pencil'">立即结算</div>
+				<div class="submit del" v-if="editchange == ''" @click="delitems('d')">删除</div>
+			</div>
+			<!-- 底部导航栏 -->
+			<div class="navbars">
+				<div onclick="javascript:window.location.replace('index_wshy_index.html')">
+					<p><i class="fa fa-home"></i></p>
+					<div>首页</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_dynamic.html')">
+					<p><i class="fa fa-ellipsis-h"></i></p>
+					<div>动态</div>
+				</div>
+				<div lang="active">
+					<p><i class="fa fa-shopping-cart"></i></p>
+					<div>购物车</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_personal.html')">
+					<p><i class="fa fa-user"></i></p>
+					<div>我的</div>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/mescroll/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/index_wshy_shopcar/base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

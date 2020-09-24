@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/navbar.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/mescroll/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/swiper-5.4.1/package/css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/index_wshy_index/base.css"/>
+	</head>
+	<body>
+		<div id="app" style="max-width: 750px;margin: auto;visibility: hidden;">
+			<div class="toppart">
+				<div>
+					<div>
+						<div class="searchinput" @click.stop="searchpage">
+							<i class="search fa fa-search"></i>
+							<input type="text" placeholder="请输入关键词搜索">
+						</div>							
+					</div>
+				</div>
+			</div>
+			<div id="mesapp" class="mescroll">
+				<div style="max-width: 750px;margin: auto;">
+					<div id="swipers" class="swiper-container">
+						<div class="swiper-wrapper swiperc">
+							<div class="swiper-slide" v-for="v in swiperdata1">
+								<p>TITLE</p>
+								<img :data-src="v" class="swiper-lazy">
+								<div class="swiper-lazy-preloader"></div>
+							</div>
+						</div>
+						<div class="swiper-pagination"></div>
+						<div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper-container外面，需要自定义样式。-->
+						<div class="swiper-button-next"></div><!--右箭头。如果放置在swiper-container外面，需要自定义样式。-->
+					</div>
+					<div class="swiper2wrap">
+						<i class="tip fa fa-volume-up"></i>
+						<div id="swipers2" class="swiper-container">
+							<div class="swiper-wrapper swiperc">
+								<div class="swiper-slide" v-for="v in swiperdata2">
+									{{v}}
+								</div>
+							</div>
+						</div>				
+					</div>
+					<div class="menuitemwrap">
+						<div class="menuitem" v-for="v in menuitems">
+							<div :style="{color:v.color}">
+								<i class="fa fa-files-o"></i>
+								{{v.dec}}						
+							</div>
+						</div>
+					</div>
+					<div class="bigtitle">
+						--&nbsp;&nbsp;精选商家&nbsp;&nbsp;--
+					</div>
+					<div class="itemswrap">
+						<div class="items" v-for="v in items" onclick="javascript:location.href = 'index_wshy_buiness.html'">
+							<div class="itemsavatar">
+								<img :src="v.avatar" alt="">
+							</div>
+							<p>{{v.dec}}</p>
+						</div>
+					</div>
+					<div class="bigtitle nomore">
+						--&nbsp;&nbsp;没有更多了&nbsp;&nbsp;--
+					</div>									
+				</div>
+			</div>
+			<!-- 底部导航栏 -->
+			<div class="navbars">
+				<div lang="active">
+					<p><i class="fa fa-home"></i></p>
+					<div>首页</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_dynamic.html')">
+					<p><i class="fa fa-ellipsis-h"></i></p>
+					<div>动态</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_shopcar.html')">
+					<p><i class="fa fa-shopping-cart"></i></p>
+					<div>购物车</div>
+				</div>
+				<div onclick="javascript:window.location.replace('index_wshy_personal.html')">
+					<p><i class="fa fa-user"></i></p>
+					<div>我的</div>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/mescroll/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/swiper-5.4.1/package/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/index_wshy_index/datas.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/index_wshy_index/base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

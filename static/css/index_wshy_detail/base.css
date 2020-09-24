@@ -1,0 +1,491 @@
+@charset "utf-8";
+html {
+	overflow: hidden;
+	position: relative;
+}
+.main {
+	max-width: 750px;
+	margin: auto;
+	position: relative;
+	overflow-y: auto;
+}
+.main,.fixwrap,.fixforpaywrap,.fix-pay-slidebox {
+	font-size: 0.2rem;
+}
+/* 按钮波纹 */
+.waves{
+	position:relative;
+	cursor:pointer;
+	display:inline-block;
+	overflow:hidden;
+	text-align: center;
+	-webkit-tap-highlight-color:transparent;
+	z-index:1;
+}
+.waves .waves-animation{
+	position:absolute;
+	border-radius:50%;
+	width:25px;
+	height:25px;
+	opacity:0;
+	background:rgba(255,255,255,0.3);
+	transition:all 0.7s ease-out;
+	transition-property:transform, opacity, -webkit-transform;
+	-webkit-transform:scale(0);
+	transform:scale(0);
+	pointer-events:none
+}
+
+
+/* swiper */
+.swiper-container{
+	height: 6rem;
+	background-color: #eee;
+}
+.swiper-container img {
+	width: 100%;
+	height: 100%;
+}
+.swiper-container p {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 0.9rem;
+	text-align: center;
+	line-height: 6rem;
+	color: white;
+	font-weight: bolder;
+}
+.swiper-pagination-bullet {
+	width: 0.2rem;
+	height: 0.2rem;
+}
+
+/* 信息 */
+.price {
+	padding: 0.2rem;
+	font-size: 0.6rem;
+	color: coral;
+	font-weight: bolder;
+}
+.title {
+	padding: 0rem .2rem .0rem;
+	margin-bottom: .2rem;
+	font-size: 0.3rem;
+	font-weight: bolder;
+	height: 0.8rem;
+	position: relative;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;	
+}
+.dec {
+	padding: 0rem .2rem .0rem;
+	margin-bottom: .2rem;
+	font-size: 0.3rem;
+	color: #888;
+}
+.types {
+	padding: 0 0.2rem 0.2rem;
+	font-size: 0.3rem;
+	margin-bottom: 0.5rem;
+}
+
+.types span {
+	display: inline-block;
+	margin: 0.2rem 0.2rem 0 0;
+	border-radius: 0.5rem;
+	font-size: 0.25rem;
+	padding: 0.1rem 0.2rem;
+	border: 1px solid #888;
+}
+.detail img{
+	float: left;
+}
+
+.avatar_dicu {
+	padding: 0.3rem;
+}
+.avatar_dicu img {
+	width: 100%;
+	height: 100%;
+}
+.avatar_dicu .avatarimg {
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: #eee;
+}
+.avatar em {	
+	font-style: normal;
+	color: coral;
+}
+.nickname {
+	vertical-align: top;
+	display: inline-block;
+	padding-top: 0.08rem;
+	margin-left: 0.1rem;
+	font-size: 0.3rem;
+}
+.dicuCont {
+	word-break: break-all;
+	padding: 0.3rem 0 0.4rem;
+	font-size: 0.25rem;
+	border-bottom: 1px solid #ccc;
+}
+.replywrap {
+	margin-top: 0.4rem;
+	margin-left: 0.8rem;
+	min-height: 0.2rem;
+	padding: 0.2rem;
+	background-color: #eee;
+	word-break: break-all;
+}
+.wavesforreply {
+	text-align: left;padding-top: 0.1rem;
+}
+.subnick {
+	max-width: 3.4rem;display: inline-block;
+}
+.replywrap>p {
+	margin: 0.1rem 0;
+}
+.replywrap em {
+	font-style: normal;
+	color: coral;
+}
+.avatar_dicu .avatarimg2 {
+	background-color: white;
+	vertical-align: middle;
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-right: 0.05rem;
+	margin-top: -0.06rem;
+}
+.dicustar {
+	display: inline-block;
+	margin: 0.2rem 0.2rem 0.2rem .5rem;
+}
+.dicustarfirst {
+	margin: 0 0 0 .75rem;font-size: 0.25rem;
+}
+.nodicucont {
+	padding: 0.7rem 0;
+	text-align: center;
+	font-size: 0.4rem;
+	color: #c8d5f3;
+}
+.nodicucont i {
+	font-size: 2rem;
+	margin-bottom: 0.4rem;
+}/*  */
+.dicu {
+	height: 3.5rem;
+}
+.dicu p {
+	padding: 0.2rem 0.3rem;
+	font-size: 0.3rem;
+}
+.dicutextarea {
+	margin: 0 0.3rem;
+	padding: 0.2rem;
+	border: 1px solid coral;
+	border-radius: 0.09rem;
+}
+
+.dicutextarea textarea {
+	width: 100%;
+	height: 1rem;
+	resize: none;
+}
+.dicu button {
+	width: 100%;
+	height: 0.6rem;
+	background-color: coral;
+	color: white;
+	margin-top: 0.1rem;
+	border-radius: 0.09rem;
+}
+/* fixwrap */
+.fixwrap {
+	width: 100%;
+	height: 0.8rem;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	background-color: white;
+	z-index: 2;
+}
+.fixbox {
+	max-width: 750px;
+	height: 100%;
+	margin: auto;
+	border-top: 1px solid #e8e8e8;
+	display: flex;
+}
+.fix-smallicon {
+	width: 0.6rem;
+	height: 0.6rem;
+	margin: 0.1rem 0rem 0 0.1rem;
+	overflow: hidden;
+}
+.fix-smallicon p {
+	width: 0.35rem;
+	height: 0.35rem;
+	margin: auto;
+	font-size: 0.35rem;
+	text-align: center;
+	line-height: 0.35rem;
+	color: coral;
+}
+.fix-smallicon div {
+	text-align: center;
+	color: #999;
+}
+.fix-bigbutton {
+	width: 2.59rem;
+	height: 0.6rem;
+	margin: 0.1rem 0rem 0 0.1rem;
+	color:white;
+	text-align: center;
+	line-height: 0.6rem;
+	font-size: 0.25rem;
+}
+.fix-noml {
+	margin-left: 0;
+}
+.fix-shop {
+	position: relative;
+	top:-0.02rem;
+	font-size: 0.4rem !important;
+}
+.fix-com {
+	position: relative;
+	top:-0.03rem;
+}
+.fix-buynow {
+	border-radius: 0.3rem 0 0 0.3rem;
+	background-color: coral;
+}
+.fix-addtocar {
+	border-radius: 0rem 0.3rem 0.3rem 0rem;
+	background-color: orange;
+}
+/* fixforpaywrap */
+.fixforpaywrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.7);
+	z-index: 3;
+	visibility: hidden;
+	opacity: 0;
+}
+.fix-pay-slidebox {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	overflow: hidden;
+	transition: 300ms;
+	z-index: 4;
+	height: 0;
+}
+.fix-pay-slidebox i {
+	position: absolute;
+	right:0.2rem;
+	top:1.1rem;
+	font-size: 0.4rem;
+	color: #f1bdaa;
+}
+.fix-pay-contbox {
+	height: 4.5rem;
+}
+.fix-pay-cont {
+	height: 3.6rem;
+	background-color: white;
+}
+.fix-pay-headpart {
+	display: flex;
+}
+.fix-pay-avatar {
+	width: 1.9rem;
+	height: 2.3rem;
+	border: 1px solid #ccc;
+	background-color: white;
+	margin-top: -0.9rem;
+	margin-left: 0.3rem;
+	border-radius: 0.05rem;
+}
+.fix-pay-avatar p {
+	width: 1.5rem;
+	height: 1.9rem;
+	margin: 0.2rem 0 0 0.2rem;
+	background-color: #eee;
+	border-radius: 0.03rem;
+	position: relative;
+	overflow: hidden;
+}
+.fix-pay-avatar p img {
+	width: 100%;
+	height: 100%;
+}
+.fix-pay-price {
+	padding: 0.2rem;
+	font-size: 0.4rem;
+	color: coral;
+}
+.fix-pay-title {
+	margin-left: 0.25rem;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+	text-overflow: ellipsis;
+}
+.fix-pay-num {
+	display: flex;
+	margin: 0.3rem 0.3rem 0;
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid #ccc;
+}
+.fix-pay-numtitle {
+	width: 1.6rem;line-height: 0.35rem;font-size: 0.25rem;
+}
+.fix-pay-numwrap {
+	text-align: right;width: 100%;
+}.fix-pay-numwrap>div {
+	display: inline-block;text-align: center;
+}
+.fix-pay-numinput,.fix-pay-numadd,.fix-pay-numdown {
+	float: left;
+	border: 1px solid coral;
+}
+.fix-pay-numinput {
+	display: inline-block;
+	text-align: center;
+	line-height: 0.35rem;
+	width: 1rem;
+	height: 0.35rem;
+	vertical-align: top;
+	position: relative;
+	overflow: hidden;
+	border-left: none;
+}
+.fix-pay-numinput input {
+	width: 0.9rem;
+	text-align: center;
+}
+.fix-pay-numadd,.fix-pay-numdown {
+	display: inline-block;
+	text-align: center;
+	line-height: 0.2rem;
+	width: 0.3rem;
+	height: 0.2rem;
+	padding: 0.075rem 0;
+	vertical-align: top;
+	color: coral;
+}
+.fix-pay-numadd {
+	border-radius: 0.03rem 0 0 0.03rem;
+}
+.fix-pay-numdown{
+	border-left: none;
+	border-radius: 0rem 0.03rem 0.03rem 0;
+}
+.fix-pay-submit {
+	padding: 0.2rem 0.3rem;
+}
+.fix-pay-submit button {
+	width: 100%;
+	height: 0.6rem;
+	color: white;
+	background-color: coral;
+	font-size: 0.3rem;
+	border-radius: 0.05rem;
+}
+.fix-pay-submit button[lang='add']{
+	background-color: orange;
+}
+/* 公用 */
+.bigtitle {
+	text-align: center;
+	line-height: 0.9rem;
+	height: 0.9rem;
+	font-size: 0.2rem;
+	color: #6684c6;
+	font-weight: bolder;
+}
+.harftitle {
+	width: 50%;
+	float: left;
+}
+.hiddens {
+	height: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+@media (max-width:436px) and (min-width:340px) {
+	.fix-smallicon div {
+		position: relative;
+		top: -0.05rem;
+		transform: scale(0.9);
+	}
+}
+@media (max-width:340px) {
+	.fix-smallicon div {
+		position: relative;
+		top: -0.05rem;
+		transform: scale(0.8);
+	}
+}
+@keyframes showpaybox{
+	0%{
+		visibility: hidden;
+		opacity: 0;
+	}
+	1%{
+		visibility: visible;
+		opacity: 0;
+	}
+	100%{
+		visibility: visible;
+		opacity: 1;
+	}
+}
+@keyframes showpaybox2{
+	0%{
+		height: 0;
+	}
+	100%{
+		height: 4.5rem;
+	}
+}
+@keyframes closepaybox{
+	0%{
+		visibility: visible;
+		opacity: 1;
+	}
+	99%{
+		visibility: visible;
+		opacity: 0;
+	}
+	100%{
+		visibility: hidden;
+		opacity: 0;
+	}
+}
+@keyframes closepaybox2{
+	0%{
+		height: 4.5rem;
+	}
+	100%{
+		height: 0;
+	}
+}

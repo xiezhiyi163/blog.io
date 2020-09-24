@@ -1,0 +1,20 @@
+var objlist = [
+	{
+		avatar:'static/imgs/index_wshy_index/timg.jpg',dec:'洪峰制造商',
+	},			
+	{				
+		avatar:'static/imgs/index_wshy_index/u=1125723489,855057867&fm=26&gp=0.jpg',dec:'心语制造商',
+	},				
+	{			
+		avatar:'static/imgs/index_wshy_index/u=2050224734,3478897659&fm=26&gp=0.jpg',dec:'进口lv批发',
+	},				
+	{			
+		avatar:'static/imgs/index_wshy_index/timg.jpg',dec:'电脑部件批发商',
+	},			
+	{
+		avatar:'static/imgs/index_wshy_index/u=1125723489,855057867&fm=26&gp=0.jpg',dec:'T恤批发',
+	},	
+	{
+		avatar:'static/imgs/index_wshy_index/u=2050224734,3478897659&fm=26&gp=0.jpg',dec:'洪峰制造商',
+	},			
+]
