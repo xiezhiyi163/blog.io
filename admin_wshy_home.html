@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/admin_wshy_index/home.css"/>
+	</head>
+	<body>
+		<div id="app" style="visibility: hidden;">
+			<!-- pc ### pc -->
+			<div class="pc" v-if="pcormob == 'pc'">
+				<!-- loginviewwrap -->
+				<div class="loginviewwrap">
+					<!-- table处理的tablecell容器，留一个出来做100%宽自适应，其他的在里面放一个容器设置宽度 -->
+					<div class="dayview">
+						<div lang="tablewrap">
+							<div lang="tcell">
+								<div style="width: 100px;">
+									7天前登录
+								</div>								
+							</div>
+							<div lang="tcell">
+								<div style="width: 100px;">
+									15天前登录
+								</div>								
+							</div>
+							<div lang="tcell">
+								<div style="width: 100px;">
+									1个月前登录
+								</div>								
+							</div>
+							<div lang="tcell">
+								<div style="width: 100px;">
+									3个月前登录
+								</div>								
+							</div>
+							<div lang="tcell" style="width: 100%;"></div>
+							<div lang="tcell">
+								<div class="daysearchwrap">
+									<p class="daysearch">
+										<input type="datetime-local">
+									</p>
+									<button>搜索</button>
+								</div>								
+							</div>
+						</div>
+					</div>
+					<div class="loginview">
+						<div lang="tablewrap">
+							<div lang="tcell">
+								<div style="width: 250px;">
+									<p>20</p>
+									<p class="cellitem">微信登录</p>
+								</div>								
+							</div>
+							<div lang="tcell">
+								<div style="width: 250px;">
+									<p>20</p>
+									<p class="cellitem">手机登录</p>
+								</div>								
+							</div>
+							<div lang="tcell">
+								<div style="width: 250px;">
+									<p>20</p>
+									<p class="cellitem">账号登录</p>
+								</div>								
+							</div>
+							<div lang="tcell" style="width: 100%;"></div>
+						</div>							
+					</div>
+				</div>
+				<!-- charts and table -->
+				<div>
+					<div style="padding: 20px;overflow: hidden;position: relative;">
+						<div id="echarts"></div>
+					</div>					
+				</div>
+			</div>
+			<!-- mob ### mob -->
+			<div class="mob" v-if="pcormob=='mob'">
+				<div class="searchkeywrap">
+					<div class="searchkey">
+						<span>七天内登录</span>
+					</div>
+					<div class="searchkey">
+						<span>15天内登录</span>
+					</div>
+					<div class="searchkey">
+						<span>一个月内登录</span>
+					</div>
+					<div class="searchkey">
+						<span>三个月内登录</span>
+					</div>
+				</div>
+				<div class="searchwrap">
+					<div class="daysearchwrap">
+						<p class="daysearch">
+							<input type="datetime-local">
+						</p>
+					</div>	
+					<button>搜索</button>
+				</div>
+				<div class="loginviewwrap">
+					<div>
+						<p>20</p>
+						<p class="cellitem">微信登录</p>
+					</div>
+					<div>
+						<p>20</p>
+						<p class="cellitem">手机登录</p>
+					</div>
+					<div>
+						<p>20</p>
+						<p class="cellitem">账号登录</p>
+					</div>
+				</div>
+				<!-- charts and table -->
+				<div>
+					<div style="padding: 20px;overflow: hidden;position: relative;">
+						<div id="echarts2"></div>
+					</div>					
+				</div>
+			</div>
+			<div style="text-align: center;line-height: 100px;color: #666;">
+				官网实战项目：https://gxhyapp.com/
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/admin_wshy_index/home.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

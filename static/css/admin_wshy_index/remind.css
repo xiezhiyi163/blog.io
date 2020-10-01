@@ -1,0 +1,125 @@
+@charset "utf-8";
+.searchin{
+	text-align: center;
+	padding: 65px 0 20px;
+}
+.search {
+	display: inline-block;
+	height: 25px;
+	width: 300px;
+	margin-right: -5px;
+	position: relative;
+	overflow: hidden;
+	padding: 5px 10px;
+	border: 1px solid #333;
+	vertical-align: middle;
+	text-align: left;
+	background-color: #eee;
+}
+.search input {
+	width: 100%;
+	vertical-align: top;
+	padding: 5px 0;
+	background-color: #eee;
+}
+.searchwrap button {
+	width: 90px;
+	height: 37px;
+	color: white;
+	background-color: #333;
+	vertical-align: middle;
+}
+.fastkey div {
+	max-width: 410px;
+	margin: auto;
+}
+.fastkey div span {
+	font-size: 16px;
+	margin-right: 15px;
+}
+/* table */
+.tablewrap {
+	margin: 50px 30px 0;
+	position: relative;
+	overflow-x: auto;
+}
+#tablewrap th,#tablewrap .el-table--striped .el-table__body tr.el-table__row--striped td{
+	background-color: #e2e2e2;
+}
+#tablewrap .cell {
+	text-align: center;
+}
+#tablewrap{
+	min-width: 700px;
+}
+/* mob ### mob */
+.mob .searchwrap {
+	position: relative;
+}
+.mob .searchwrap >div {
+	height: 25px;
+	padding: 0px 10px;
+	margin: 30px 109px 30px 30px;
+	border: 1px solid #333;
+	position: relative;
+	overflow: hidden;
+}
+.mob .searchwrap >div>input {
+	padding: 5px 0;
+	width: 100%;
+}
+.mob .searchwrap>button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 30px;
+	width: 80px;
+	height: 27px;
+}
+.mob .keywrap {
+	margin: 0 30px 10px;
+	word-break: break-word;
+}
+.mob .keywrap span {
+	display: inline-block;
+	margin:0 10px 20px 0;
+}
+.mob .cardwrap {
+	margin: 0 30px;
+}
+.mob .cardwrap>div {
+	border-bottom: 1px solid #333;
+}
+.mob .hr {
+	height: 1px;background-color: #333;margin-bottom: 20px;
+}
+.mob i {
+	margin-right: 10px;
+}
+.mob .carditemwrap {
+	position: relative;
+	border: 1px solid #333;
+	margin-bottom: 20px;
+	padding: 20px 0px 0;
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 0;
+}
+.mob .carditemwrap i {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px 5px 0 0;
+}
+.mob .carditem {
+	display: table;
+	width: 100%;
+	margin:10px 0px 0;
+}
+.mob .carditem div {
+	display: table-cell;
+	transform: scale(0.9);
+}
+.mob .carditem div[lang='title'] {
+	width: 80px;
+}

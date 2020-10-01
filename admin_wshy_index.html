@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- /*这个项目我纠结了很久做响应式，最终还是放弃了，因为css响应式对像这个项目的布局来说不算特别友好*/ -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/admin_wshy_index/base.css"/>
+	</head>
+	<body>
+		<div id="app" style="visibility: hidden;" :style="pcormob=='win'?'min-width:1000px':''">
+			<div class="tables">
+				<div class="leftnavwrap" :style="{width:leftnavwidth+'px'}">
+					<!-- 该项目导航仅适用两层以内的导航结构，不宜出现过多的导航分层 -->
+					<div class="largenav" :style="{width:leftnavwidth+'px',height:winheight+'px',visibility:leftbigshow?'visible':'hidden'}">
+						<div class="leftnavsbig">
+							<div class="avatar"></div>
+							<div class="nickname">admin</div>
+							<div class="bignavs" :style="{maxHeight:(winheight-374) + 'px',dec:'224+150'}">
+								<div v-for="(v,i) in navitems">
+									<div v-if="v.children.length==0" @click="routeind = i;title = v.title;routelink = v.route;pcormob=='mob'?setleftnavwidth():'';pcormob=='mob'?hideslide():'';sethash(v.hash,v.title,i)">
+										<i class="fa" :class="'fa-'+v.icon"></i>
+										<span :style="routeind == i?'color:'+selectcolor1:''">{{v.title}}</span>
+									</div>
+									<div v-if="v.children.length!=0" @click="v.slide = !v.slide">
+										<i class="fa" :class="'fa-'+v.icon"></i>
+										<span :style="routeind == i?'color:'+selectcolor1:''">{{v.title}}</span>
+										<i class="fa point" :class="v.slide?'fa-angle-up':'fa-angle-down'"></i>
+										<!-- subnav -->
+										<div v-show="v.slide">
+											<div v-for="(vs,is) in v.children" style="margin-top: 30px;">
+												<div @click.stop="routeind = i;routeind2 = i+'_'+is;title = vs.title;routelink = vs.route;pcormob=='mob'?hideslide():'';pcormob=='mob'?setleftnavwidth():'';sethash(vs.hash,vs.title,i+'_'+is)">
+													<i class="fa" :class="'fa-'+vs.icon"></i>
+													<span :style="routeind == i&&routeind2 == i+'_'+is?'color:'+selectcolor1:''">{{vs.title}}</span>
+												</div>
+											</div>											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="largenavCopy">@微商货源公司</div>
+						</div>
+					</div>						
+					<div class="smallnav" :style="{height:winheight+'px',visibility:leftbigshow?'hidden':'visible'}">
+						<div class="smallavatar"></div>
+						<div class="smallnavs" :style="{maxHeight:(winheight-145) + 'px',dec:'224+150'}">
+							<div v-for="(v,i) in navitems" v-if="v.title!='IP设定'">
+								<div v-if="v.children.length==0" @click="routeind = i;title = v.title;routelink = v.route;hideslide();sethash(v.hash,v.title,i)">
+									<i class="fa" :class="'fa-'+v.icon" :style="routeind == i?'color:'+selectcolor2:''"></i>
+								</div>								
+								<div v-if="v.children.length!=0" @click="routeind0 = i;v.slide = !v.slide">
+									<i class="fa" :class="'fa-'+v.icon" :style="routeind == i?'color:'+selectcolor2:''"></i>
+									<!-- subnav -->
+									<div v-show="routeind0 == i&&v.slide">
+										<div v-for="(vs,is) in v.children">
+											<div @click.stop="routeind = i;routeind2 = i+'_'+is;title = vs.title;routelink = vs.route;v.slide = !v.slide;hideslide();sethash(vs.hash,vs.title,i+'_'+is)">
+												<i class="fa" :class="'fa-'+vs.icon"></i>
+												<span :style="routeind == i&&routeind2 == i+'_'+is?'color:'+selectcolor2:''">{{vs.title}}</span>
+											</div>
+										</div>											
+									</div>
+								</div>								
+							</div>							
+						</div>
+						<div class="smallnavCog" @click="routeind = navitems.length-1;title = navitems[navitems.length-1].title;routelink = v.route;sethash(navitems[navitems.length-1].hash,navitems[navitems.length-1].title,navitems.length-1)" v-if="showIPset" :style="routeind == navitems.length-1?'color:'+selectcolor2:''">
+							<i class="fa" :class="'fa-'+navitems[navitems.length-1].icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="contwrap" :style="{height:(winheight) + 'px',minWidth:pcormob=='win'?'':'260px'}">
+					<div class="conttop">
+						<i class="fa fa-bars" @click="setleftnavwidth"></i><span>{{title}}</span>
+					</div>
+					<div class="routers" :style="{height:(winheight-61) + 'px'}">
+						<!-- 脚手架是拿到路径显示页面，这里是直接拿组件地址显示 -->
+						<iframe frameborder="0" :src="routelink+'?'+querys" width="100%" :height="(winheight-60)"></iframe>
+					</div>					
+				</div>				
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/admin_wshy_index/base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

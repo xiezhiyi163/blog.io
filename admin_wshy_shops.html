@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/elementui/elementui.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/admin_wshy_index/shops.css"/>
+	</head>
+	<body>
+		<template id="cardComponent_">
+			<div class="cardwrap">
+				<div>
+					<hr class="hr">
+					<div style="margin: 0px 0px 20px;">
+						<i class="fa" :class="listallcheck?'fa-check-square':'fa-square-o'"></i>全选
+					</div>
+					<div class="carditemwrap" v-for="v in listdata" style="padding-bottom: 20px;">
+						<i class="fa" :class="v['check']?'fa-check-square':'fa-square-o'"></i>
+						<div class="carditem" v-for="(vs,is) in listtitles">
+							<div lang="title">{{vs}}:</div>
+							<div v-if="listprops[is] != 'img'&&listprops[is] != uidprops" style="word-break: break-all;">{{v[listprops[is]]}}</div>
+							<div v-if="listprops[is] != 'img'&&listprops[is] == uidprops" style="color: #00BDFF;word-break: break-all;">{{canclickdec}}</div>
+							<div v-if="listprops[is] == 'img'" style="color: #00BDFF;word-break: break-all;">查看图片</div>
+						</div>
+					</div>
+				</div>
+				<i style="height: 20px;display: block;"></i>
+			</div>
+		</template>
+		<template id="shoplistComponent_">
+			<div class="itemwrap">
+				<div class="shopitem" v-for="v in 6">
+					<div class="shopitemin">
+						<p></p>
+						<div>
+							<div class="itemprice">
+								0.00-0.00
+							</div>
+							<div class="itemtitle">
+								这是商品标题这是商品标题这是商品标题这是商品标题这是商品标题
+							</div>
+							<div class="itemtime">
+								创建时间：2000-02-02
+							</div>
+						</div>
+					</div>
+				</div>
+				<i style="clear: both;display: block;"></i>
+			</div>
+		</template>
+		<div id="app" style="visibility: hidden;">
+			<div class="pc" v-if="pcormob == 'pc'">
+				<div class="searchwrap">
+					<div class="searchin">
+						<form action="">
+							<label for="search">
+								<p class="search">
+									<input type="datetime" id="search" required="false">
+								</p>
+							</label>						
+							<button>搜索</button>						
+						</form>
+					</div>
+					<div class="fastkey">
+						<div>
+							<span>7天以内</span>
+							<span>15天以内</span>
+							<span>一个月以内</span>						
+						</div>
+					</div>
+				</div>
+				<div class="tablewrap">
+					<div id="tablewrap">
+						<!-- elementui:没有template则直接拿数据的，有就可以自定义数据显示 -->
+						<el-table :data="tablelistdata" border stripe ref="multipleTable" @selection-change="handleSelectionChange" :default-sort="{prop: 'nickname', order: 'descending'}">
+							<el-table-column type="selection" width="55">
+							</el-table-column>
+							<el-table-column label="名称" sortable prop='nickname'>
+								<template slot-scope='scope'>
+									<span :num="scope.$index">{{scope.row.nickname}}</span>
+								</template>
+							</el-table-column>
+							<el-table-column label="手机号" sortable prop='phone'>
+								<template slot-scope='scope'>
+									<span :num="scope.$index">{{scope.row.phone}}</span>
+								</template>
+							</el-table-column>
+							<el-table-column label="商品查看">
+								<template slot-scope='scope'>
+									<span :num="scope.$index" style="cursor: pointer;color: #00BDFF;" @click.stop="openfixwindow = !openfixwindow">点击查看商品</span>
+								</template>
+							</el-table-column>
+							<el-table-column label="入驻日期" prop='date'></el-table-column>
+						</el-table>					
+					</div>
+				</div>				
+			</div>
+			<div class="mob" v-if="pcormob == 'mob'">
+				<div class="searchwrap">
+					<div>
+						<input type="text">
+					</div>
+					<button type="button">搜索</button>
+				</div>
+				<div class="keywrap">
+					<span>7天以内</span>
+					<span>15天以内</span>
+					<span>一个月以内</span>
+				</div>
+				<div class="conts">
+					<cardlist :listprops='tableprops' :listtitles='tabletitle' :listdata='tablelistdata' :fuidprop='null' :uidprops='"uid"' :canclickdec='"点击查看商品"'></cardlist>
+				</div>
+			</div>
+			<!-- 
+				fixwrap
+			-->
+			<div class="fixwrap" v-if="openfixwindow">
+				<p class="fixtop">
+					{{fixtitle}}
+					<i class="fa fa-close" @click.stop="openfixwindow = !openfixwindow"></i>
+				</p>
+				<div class="fixcont" :style="{height:(winheight-61)+'px',margin:'61px 0 0 0'}">
+					<shoplist></shoplist>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/elementui/elementui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/admin_wshy_index/shops.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

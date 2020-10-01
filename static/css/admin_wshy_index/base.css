@@ -1,0 +1,194 @@
+@charset "utf-8";
+html {
+	position: relative;
+	overflow: hidden;
+}
+.tables {
+	display: table;
+}
+/* leftnav */
+.leftnavwrap {
+	display: table-cell;
+	position: relative;
+	background-color: #333;
+}
+.largenav{
+	position: relative;
+	overflow: hidden;
+	transition: 150ms width;
+}
+.leftnavsbig {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 280px;
+	height: 100%;
+}
+.avatar {
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	border-radius: 50%;
+	margin:45px auto 30px;
+	overflow: hidden;
+}
+.nickname {
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	font-weight: 800;
+	margin-bottom: 10px;
+}
+.bignavs {
+	position: relative;
+	overflow-y: auto;
+}
+.bignavs>div {
+	width: 170px;
+	margin: auto;
+	color: white;
+	padding: 15px 0 ;
+	font-size: 18px;
+	font-weight: 800;
+}
+.bignavs>div span {
+	width: 115px;
+	display: inline-block;
+	text-align: justify;
+	text-align-last: justify;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+.bignavs>div i {
+	display: inline-block;
+	width: 20px;
+	margin-right: 20px;
+	text-align: center;
+	position: relative;
+	top: -5px;
+}
+.bignavs>div .point {
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 25px;
+	margin-right: -20px;
+}
+.bignavs>div>div {
+	position: relative;
+}
+.largenavCopy{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 40px 0;
+	color: white;
+	text-align: center;
+}
+.smallnav {
+	width: 60px;
+	position: absolute;
+	top:0;
+	right: 0;
+}
+.smallavatar {
+	width:40px;
+	height: 40px;
+	background-color: white;
+	border-radius: 50%;
+	margin: 20px auto 15px;
+}
+.smallnavs {
+	width: 150px;
+	position: relative;
+	overflow-x: visible;
+	overflow-y: auto;
+}
+.smallnavs>div{
+	color: white;
+	text-align: center;
+	padding: 0 0 15px;
+	font-size: 30px;
+	width: 60px;
+}
+.smallnavCog {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+	text-align: center;
+	line-height: 70px;
+	font-size: 30px;
+	color: white;
+}
+.smallnavs>div>div>div{
+	font-size: 16px;
+	margin-top: 15px;
+}
+.smallnavs>div>div>div>div {
+	width: 130px;
+	background-color: #222;
+	position: relative;
+	z-index: 3;
+	padding-bottom: 10px;
+}
+.smallnavs>div>div>div>div>div {
+	padding-top: 10px;
+}
+/* contwrap */
+.contwrap {
+	vertical-align: top;
+	display: table-cell;
+	width: 100%;
+	position: relative;
+	z-index: 2;
+	background-color: white;
+}
+.conttop {
+	height: 60px;
+	font-size: 24px;
+	border-bottom: 1px solid #ccc;
+	line-height: 60px;
+	font-weight: 800;
+	color: #666;
+}
+.conttop i {
+	padding: 0 20px;
+	cursor: pointer;
+}
+.conttop span {
+	letter-spacing: 3px;
+	font-size: 19px;
+	vertical-align: top;
+}
+.routers {
+	position: relative;
+	overflow: hidden;
+}
+/* 滚动条优化 */
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.smallnavs::-webkit-scrollbar,.bignavs::-webkit-scrollbar{
+    width: 7px;
+    height: 7px;
+    background-color: #333;
+  }
+
+  /*定义滚动条轨道 内阴影+圆角*/
+.smallnavs::-webkit-scrollbar-track,.bignavs::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #666;
+  }
+
+  /*定义滑块 内阴影+圆角*/
+.smallnavs::-webkit-scrollbar-thumb,.bignavs::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+    background-color: #c8c8c8;
+  }

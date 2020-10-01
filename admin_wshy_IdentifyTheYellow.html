@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/elementui/elementui.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/admin_wshy_index/IdentifyTheYellow.css"/>
+	</head>
+	<body>
+		<template id="cardComponent_">
+			<div class="cardwrap">
+				<div>
+					<hr class="hr">
+					<div style="margin: 0px 0px 20px;">
+						<i class="fa" :class="listallcheck?'fa-check-square':'fa-square-o'"></i>全选
+					</div>
+					<div class="carditemwrap" v-for="v in listdata" style="padding-bottom: 20px;">
+						<i class="fa" :class="v['check']?'fa-check-square':'fa-square-o'"></i>
+						<div class="carditem" v-for="(vs,is) in listtitles">
+							<div lang="title">{{vs}}:</div>
+							<div v-if="listprops[is] != 'img'" style="word-break: break-all;">{{v[listprops[is]]}}</div>
+							<div v-if="listprops[is] == 'img'" style="color: #00BDFF;word-break: break-all;">查看图片</div>
+						</div>
+					</div>
+				</div>
+				<i style="height: 20px;display: block;"></i>
+			</div>
+		</template>
+		<div id="app" style="visibility: hidden;">
+			<div class="pc" v-if="pcormob == 'pc'">
+				<div class="searchwrap">
+					<div class="searchin">
+						<form action="">
+							<label for="search">
+								<p class="search">
+									<input type="datetime" id="search" required="false">
+								</p>
+							</label>						
+							<button>搜索</button>						
+						</form>
+					</div>
+					<div class="fastkey">
+						<div>
+							<span>7天以内</span>
+							<span>15天以内</span>
+							<span>一个月以内</span>						
+						</div>
+					</div>
+				</div>
+				<div class="tablewrap">
+					<div id="tablewrap">
+						<!-- elementui:没有template则直接拿数据的，有就可以自定义数据显示 -->
+						<el-table :data="tablelistdata" border stripe ref="multipleTable" @selection-change="handleSelectionChange" :default-sort="{prop: 'nickname', order: 'descending'}">
+							<el-table-column type="selection" width="55">
+							</el-table-column>
+							<el-table-column label="商品名称" sortable prop='shopname'>
+								<template slot-scope='scope'>
+									<span :num="scope.$index">{{scope.row.shopname}}</span>
+								</template>
+							</el-table-column>
+							<el-table-column label="图片" prop='img'>
+								<template slot-scope='scope'>
+									<img :src="scope.row.img" alt="" width="90" height="90">
+								</template>
+							</el-table-column>
+							<el-table-column label="商品简介">
+								<template slot-scope='scope'>
+									<span :num="scope.$index">{{scope.row.inst}}</span>
+								</template>
+							</el-table-column>
+							<el-table-column label="所属商家">
+								<template slot-scope='scope'>
+									<span :num="scope.$index">{{scope.row.business}}</span>
+								</template>
+							</el-table-column>
+							<el-table-column label="添加日期" prop='date'></el-table-column>
+						</el-table>					
+					</div>
+				</div>				
+			</div>
+			<div class="mob" v-if="pcormob == 'mob'">
+				<div class="searchwrap">
+					<div>
+						<input type="text">
+					</div>
+					<button type="button">搜索</button>
+				</div>
+				<div class="keywrap">
+					<span>7天以内</span>
+					<span>15天以内</span>
+					<span>一个月以内</span>
+				</div>
+				<div class="conts">
+					<cardlist :listprops='tableprops' :listtitles='tabletitle' :listdata='tablelistdata'></cardlist>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/elementui/elementui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/admin_wshy_index/IdentifyTheYellow.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

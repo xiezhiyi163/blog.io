@@ -1,0 +1,156 @@
+@charset "utf-8";
+.dayview {
+	border-bottom: 1px solid #ccc;
+	padding: 0 30px;
+}
+.dayview>div{
+	width: 100%;
+	height: 60px;
+	display: table;
+}
+.dayview>div>div{
+	display: table-cell;
+	line-height: 60px;
+	text-align: center;
+}
+.daysearchwrap {
+	width: 370px;
+	text-align: right;
+}
+.daysearch {
+	display: inline-block;
+	border: 1px solid #333;
+	height: 25px;
+	vertical-align: middle;
+	overflow: hidden;
+	position: relative;
+	padding: 0 10px;
+	text-align: left;
+	margin-right: -5px;
+}
+.daysearch input {
+	width: 250px;
+	vertical-align: top;
+	padding: 5px 0;
+}
+.daysearchwrap button {
+	width: 80px;
+	height: 27px;
+	color: white;
+	background-color: #333;
+	vertical-align: middle;
+	line-height: 0;
+}
+.loginviewwrap {
+	padding-bottom: 20px;
+	border-bottom:  16px solid #eee;
+}
+.loginview>div {
+	display: table;
+}
+.loginview>div>div {
+	display: table-cell;
+}
+.loginview>div>div p {
+	text-align: center;
+	font-size: 50px;
+	font-weight: 800;
+	padding: 30px 0 0px;
+}
+.loginview>div>div .cellitem {
+	padding: 10px 0;
+	font-size: 15px;
+}
+
+/* echart and table */
+#echarts {
+	width: 100%;
+	height: 400px;
+}
+
+/* mob ### mob */
+.mob .searchkeywrap {
+	margin: 20px 30px 0;
+}
+.mob .searchkey{
+	float: left;
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+}
+.mob .daysearchwrap {
+	width: auto;
+}
+.mob .searchwrap {
+	position: relative;
+	margin: 20px 30px 25px;
+}
+.mob .daysearch {
+	width: auto;
+	display: block;
+	border: 1px solid #333;
+	height: 25px;
+	vertical-align: middle;
+	overflow: hidden;
+	position: relative;
+	padding: 0 10px;
+	text-align: left;
+	margin-right: 60px;
+}
+.mob .daysearch input {
+	width: 100%;
+	vertical-align: top;
+	padding: 5px 0;
+}
+.mob .searchwrap button {
+	width: 60px;
+	height: 27px;
+	color: white;
+	background-color: #333;
+	vertical-align: middle;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.mob .loginviewwrap {
+	margin: 0 30px;
+	border: 0;
+}
+.mob .loginviewwrap > div {
+	float: left;
+	width: 50%;
+	height: 80px;
+	padding: 12px 0;
+}
+.mob .loginviewwrap> div >p {
+	text-align: center;
+	font-size: 40px;
+	font-weight: 800;
+}
+.mob .loginviewwrap .cellitem {
+	font-size: 18px;
+	font-weight: 400;
+}
+/* echart and table */
+#echarts2 {
+	width: 100%;
+	height: 200px;
+}
+
+/* 统一清浮动 */
+.mob .loginviewwrap:after,.mob .searchkeywrap:after {
+	clear: both;
+	display: block;
+	content: '';
+}
+/* pc */
+@media (max-width: 900px) {
+	.daysearchwrap {
+		width: 270px;
+	}
+	.daysearch input {
+		width: 150px;
+	}
+}
