@@ -11,137 +11,139 @@
 		<link rel="stylesheet" type="text/css" href="static/css/chat_index/base.css"/>
 	</head>
 	<body>
-		<!-- 遍历用的template,数据基本上都是请求完，+1，然后到底部或顶部走完一遍 -->
-		<template id="bigcard">
-			<div class="bigcardwrap">
+		<div style="height: 0;position: relative;overflow: hidden;">
+			<!-- 遍历用的template,数据基本上都是请求完，+1，然后到底部或顶部走完一遍 -->
+			<template id="bigcard">
+				<div class="bigcardwrap">
+					<div>
+						<span class="bigcard-avatar"></span>
+						<span class="bigcard-nickname">这是nickname</span>
+					</div>
+					<div class="dec">
+						打扫房间立刻电视机分厘卡就看电视了房间dslfmlksdjlkfsdjlkf单独分开隔离开关gfdgkdflgk打扫房间立刻电视机分厘卡就看电视了房间dslfmlksdjlkfsdjlkf单独分开隔离开关gfdgkdflgk
+					</div>
+					<div class="imgs">
+						<div v-for="(v,i) in 11" v-if="i<=9-1">
+							<p class="imgwrap" :style="{height:heights}">
+								<span v-if="i==9-1" :style="{lineHeight:heights}">+11</span>
+							</p>						
+						</div>
+					</div>
+				</div>
+			</template>
+			<template id="cards">
+				<div class="cardswrap">
+					<div class="cards-avatar">
+						<div>
+							<p></p>
+						</div>
+					</div>
+					<div class="cards-nick-dec">
+						<div>
+							<p>
+								<h4>title</h4>
+							</p>
+							<p class="dec">
+								这里是获取的消息内容
+							</p>
+						</div>
+					</div>
+				</div>
+			</template>
+			<template id="filecards">
+				<div class="filecardswrap">
+					<div class="filecards-avatar">
+						<div>
+							<p></p>
+						</div>
+					</div>
+					<div class="filecards-nick-dec">
+						<div style="max-width: 150px;margin-right: 40px;">
+							<p>
+								<h4>title</h4>
+							</p>
+							<p class="dec">
+								2000MB
+							</p>
+						</div>
+					</div>
+				</div>
+			</template>
+			<template id="leftchatinfo">
 				<div>
-					<span class="bigcard-avatar"></span>
-					<span class="bigcard-nickname">这是nickname</span>
-				</div>
-				<div class="dec">
-					打扫房间立刻电视机分厘卡就看电视了房间dslfmlksdjlkfsdjlkf单独分开隔离开关gfdgkdflgk打扫房间立刻电视机分厘卡就看电视了房间dslfmlksdjlkfsdjlkf单独分开隔离开关gfdgkdflgk
-				</div>
-				<div class="imgs">
-					<div v-for="(v,i) in 11" v-if="i<=9-1">
-						<p class="imgwrap" :style="{height:heights}">
-							<span v-if="i==9-1" :style="{lineHeight:heights}">+11</span>
-						</p>						
-					</div>
-				</div>
-			</div>
-		</template>
-		<template id="cards">
-			<div class="cardswrap">
-				<div class="cards-avatar">
-					<div>
-						<p></p>
-					</div>
-				</div>
-				<div class="cards-nick-dec">
-					<div>
-						<p>
-							<h4>title</h4>
-						</p>
-						<p class="dec">
-							这里是获取的消息内容
-						</p>
-					</div>
-				</div>
-			</div>
-		</template>
-		<template id="filecards">
-			<div class="filecardswrap">
-				<div class="filecards-avatar">
-					<div>
-						<p></p>
-					</div>
-				</div>
-				<div class="filecards-nick-dec">
-					<div style="max-width: 150px;margin-right: 40px;">
-						<p>
-							<h4>title</h4>
-						</p>
-						<p class="dec">
-							2000MB
-						</p>
-					</div>
-				</div>
-			</div>
-		</template>
-		<template id="leftchatinfo">
-			<div>
-				<div style="display: table;">
-					<div class="chat-avatar">
-						<div class="chat-avatarin"></div>
-					</div>
-					<div class="chat-dec">
-						<div class="chat-nick">nickname</div>
-						<div class="chat-decin chat-dec-text" style="border-radius: 0px 20px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type=='text'">
-							这里是聊天信息
-							<img src="static/imgs/chat_index/u=1125723489,855057867&fm=26&gp=0.jpg" alt="">
+					<div style="display: table;">
+						<div class="chat-avatar">
+							<div class="chat-avatarin"></div>
 						</div>
-						<div class="chat-decin" style="padding: 5px;border-radius: 0px 20px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type!='text'">
-							<filecards></filecards>
+						<div class="chat-dec">
+							<div class="chat-nick">nickname</div>
+							<div class="chat-decin chat-dec-text" style="border-radius: 0px 20px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type=='text'">
+								这里是聊天信息
+								<img src="static/imgs/chat_index/u=1125723489,855057867&fm=26&gp=0.jpg" alt="">
+							</div>
+							<div class="chat-decin" style="padding: 5px;border-radius: 0px 20px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type!='text'">
+								<filecards></filecards>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</template>
-		<template id="rightchatinfo">
-			<div>
-				<div style="display: table;">
-					<div class="chat-dec">
-						<div class="chat-nick" style="float: right;">nickname</div>
-						<div style="clear: both;"></div>
-						<div class="chat-decin chat-dec-text" style="float: right;border-radius: 20px 0px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type=='text'">
-							这里是聊天信息
-							<img src="static/imgs/chat_index/u=1125723489,855057867&fm=26&gp=0.jpg" alt="" width="100%">
+			</template>
+			<template id="rightchatinfo">
+				<div>
+					<div style="display: table;">
+						<div class="chat-dec">
+							<div class="chat-nick" style="float: right;">nickname</div>
+							<div style="clear: both;"></div>
+							<div class="chat-decin chat-dec-text" style="float: right;border-radius: 20px 0px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type=='text'">
+								这里是聊天信息
+								<img src="static/imgs/chat_index/u=1125723489,855057867&fm=26&gp=0.jpg" alt="" width="100%">
+							</div>
+							<div class="chat-decin" style="float: right;padding: 5px;border-radius: 20px 0px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type!='text'">
+								<filecards></filecards>
+							</div>
 						</div>
-						<div class="chat-decin" style="float: right;padding: 5px;border-radius: 20px 0px 20px 20px;" :style="{maxWidth:getsign=='win'?'500px':'200px'}" v-if="type!='text'">
-							<filecards></filecards>
+						<div class="chat-avatar">
+							<div class="chat-avatarin"></div>
 						</div>
 					</div>
-					<div class="chat-avatar">
-						<div class="chat-avatarin"></div>
+				</div>
+			</template>
+			<!-- 其他的vue template 人员或群组列表 -->
+			<template id="all-comment">
+				<div class="mescroll1">
+					<div class="mescrollfix" v-if="mescroll1">加载中。。。</div>
+					<div id="mescroll1" class="mescroll">
+						<div class="chattip" v-if="tiplist.length!=0">消息提示</div>
+						<div class="chatad" style="background-image: url(static/imgs/chat_index/u=1125723489,855057867&fm=26&gp=0.jpg);">广告提示</div>
+						<div v-for="(v,i) in 30" class="thecards" :class="i == 30-1?'cardnobottom':''" @click="shopchatinfo">
+							<cards></cards>
+						</div>
+					</div>				
+				</div>
+			</template>
+			<template id="all-dynamic">
+				<div class="mescroll2">
+					<div class="mescrollfix" v-if="mescroll2">加载中。。。</div>
+					<div id="mescroll2" class="mescroll">
+						<div class="chattip" v-if="tiplist.length!=0">消息提示</div>
+						<div v-for="(v,i) in 30" class="thecards" :class="i == 30-1?'cardnobottom':''">
+							<bigcards></bigcards>
+						</div>
 					</div>
 				</div>
-			</div>
-		</template>
-		<!-- 其他的vue template 人员或群组列表 -->
-		<template id="all-comment">
-			<div class="mescroll1">
-				<div class="mescrollfix" v-if="mescroll1">加载中。。。</div>
-				<div id="mescroll1" class="mescroll">
-					<div class="chattip" v-if="tiplist.length!=0">消息提示</div>
-					<div class="chatad" style="background-image: url(static/imgs/chat_index/u=1125723489,855057867&fm=26&gp=0.jpg);">广告提示</div>
-					<div v-for="(v,i) in 30" class="thecards" :class="i == 30-1?'cardnobottom':''" @click="shopchatinfo">
-						<cards></cards>
-					</div>
-				</div>				
-			</div>
-		</template>
-		<template id="all-dynamic">
-			<div class="mescroll2">
-				<div class="mescrollfix" v-if="mescroll2">加载中。。。</div>
-				<div id="mescroll2" class="mescroll" style="visibility: hidden;">
-					<div class="chattip" v-if="tiplist.length!=0">消息提示</div>
-					<div v-for="(v,i) in 30" class="thecards" :class="i == 30-1?'cardnobottom':''">
-						<bigcards></bigcards>
+			</template>
+			<template id="all-user">
+				<div class="mescroll3">
+					<div class="mescrollfix" v-if="mescroll3">加载中。。。</div>
+					<div id="mescroll3" class="mescroll">
+						<div class="chattip" v-if="tiplist.length!=0">消息提示</div>
+						<div v-for="(v,i) in 30" class="thecards" :class="i == 30-1?'cardnobottom':''">
+							<cards></cards>
+						</div>
 					</div>
 				</div>
-			</div>
-		</template>
-		<template id="all-user">
-			<div class="mescroll3">
-				<div class="mescrollfix" v-if="mescroll3">加载中。。。</div>
-				<div id="mescroll3" class="mescroll">
-					<div class="chattip" v-if="tiplist.length!=0">消息提示</div>
-					<div v-for="(v,i) in 30" class="thecards" :class="i == 30-1?'cardnobottom':''">
-						<cards></cards>
-					</div>
-				</div>
-			</div>
-		</template>
+			</template>			
+		</div>
 		<!-- 
 			##
 			app 

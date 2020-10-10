@@ -9,6 +9,7 @@
 	list-style: none;
 	appearance:none;
 	-webkit-appearance:none;
+	font-family: "microsoft yahei","arial";
 }
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button 
 {

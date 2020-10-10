@@ -3,7 +3,7 @@ html,body{
 	position: relative;
 	overflow: hidden;
 	user-select:none;
-	font-family: "微软雅黑,arial";
+	font-family: "microsoft yahei","arial";
 }
 .chatwrap {
 	display: table;	
