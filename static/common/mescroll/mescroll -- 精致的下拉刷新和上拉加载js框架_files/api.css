@@ -1,0 +1,121 @@
+body{
+	background-color: #2C2C32
+}
+.ms-content .c-view{
+	padding-left: 24px;
+	text-align: left;
+	color: white;
+}
+/*大标题*/
+.page-title{
+	margin-top: 50px;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+}
+/*GitHub*/
+.git-warp{
+	display: block;
+	margin-top: 30px;
+	text-align: center;
+	color: white;
+}
+.git-warp:hover{
+	color: #53D9EF;
+}
+.git-warp *{
+	vertical-align: middle;
+}
+.git-warp .svg-git{
+	fill: white;
+}
+.star-warp{
+	display: inline-block;
+	padding: 0 8px 2px 8px;
+	border: 1px solid #CDCFD1;
+	border-radius: 3px;
+	background-color: #F7F9FB;
+	color: black;
+}
+/*目录*/
+.nav-float{
+	z-index: 9990;
+	position: fixed;
+	top: 150px;
+	right: 3%;
+	width: 150px;
+	text-align: center;
+	border: 1px solid darkgray;
+	border-radius: 6px;
+	background-color: #2C2C32;
+}
+.nav-float a{
+	display: block;
+	padding: 10px;
+	border-bottom: 1px solid darkgray;
+	color: white;
+}
+.nav-float a:last-child{
+	border: none;
+}
+.nav-float a:hover{
+	color: #A6E22B;
+}
+/*菜单标题*/
+.nav-title{
+	padding: 76px 0 15px 0;
+	font-size: 20px;
+	color: #A6E22B;
+}
+/*代码*/
+.nav-code{
+	width: 100%;
+	margin-left: 20px;
+	line-height: 24px;
+	font-size: 15px;
+	overflow:hidden;
+	resize : none;
+	border: 1px solid darkgray;
+	border-radius: 16px;
+	background-color: transparent;
+	color: #53D9EF;
+}
+.nav-code .darkgray{
+	color: #eee;
+}
+/*说明*/
+.nav-li{
+	padding: 14px 0;
+}
+/*表格*/
+.nav-table{
+	width: 100%;
+	margin: 10px 0 0 24px;
+	border-top: 1px solid darkgray;
+	border-left: 1px solid darkgray;
+	text-align: center;
+}
+.nav-table td{
+	padding: 16px 8px;
+	border-right: 1px solid darkgray;
+	border-bottom: 1px solid darkgray;
+}
+.nav-table td.left{
+	text-align: left;
+	padding-left: 20px;
+}
+.nav-table tr td:first-child{
+	color: #53D9EF;
+}
+.nav-table tr td.white{
+	color: white;
+}
+/*a链接*/
+.nav-li a,
+.nav-table a{
+	color: #53D9EF;
+}
+.nav-li a:hover,
+.nav-table a:hover{
+	color: #A6E22B;
+}
