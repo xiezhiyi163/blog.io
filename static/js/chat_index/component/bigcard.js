@@ -7,10 +7,16 @@ var allbigcard = {
 		mounted:function(){
 			var _this = this;
 			setTimeout(function() {
-				_this.heights = document.querySelectorAll('.imgwrap')[0].offsetWidth + 'px'
-				window.addEventListener('resize',function(){
+				if(navigator.userAgent.indexOf('Trident')!=-1){
+					var m = document.createElement('style')
+					m.innerHTML = '.imgwrap {height:86.666px}.imgwrap span {line-height:86.666px}'
+					document.getElementsByTagName('head')[0].appendChild(m)
+				}else{
 					_this.heights = document.querySelectorAll('.imgwrap')[0].offsetWidth + 'px'
-				})			
+					window.addEventListener('resize',function(){
+						_this.heights = document.querySelectorAll('.imgwrap')[0].offsetWidth + 'px'
+					})			
+				}
 			}, 0);
 		}
 	},
