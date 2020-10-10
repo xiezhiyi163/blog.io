@@ -27,7 +27,7 @@ var alldynamic = {
 		template:'#all-dynamic',
 		created:alldynamic.created,
 		components:alldynamic.components,
-		data(){
+		data:function(){
 			return alldynamic.datas
 		},
 		methods:alldynamic.methods,

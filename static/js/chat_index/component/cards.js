@@ -7,7 +7,7 @@ var allcard = {
 	allcardVue = {
 		template:'#cards',
 		created:allcard.created,
-		data(){
+		data:function(){
 			return allcard.datas
 		},
 		methods:allcard.methods,

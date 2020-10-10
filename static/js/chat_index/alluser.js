@@ -24,7 +24,7 @@ var alluser = {
 		template:'#all-user',
 		created:alluser.created,
 		components:alluser.components,
-		data(){
+		data:function(){
 			return alluser.datas
 		},
 		methods:alluser.methods,

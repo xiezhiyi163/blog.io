@@ -42,7 +42,7 @@ var rightchatinfo = {
 		created:rightchatinfo.created,
 		props:rightchatinfo.props,
 		components:rightchatinfo.components,
-		data(){
+		data:function(){
 			return rightchatinfo.datas
 		},
 		methods:rightchatinfo.methods,

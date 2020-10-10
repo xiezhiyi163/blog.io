@@ -7,7 +7,7 @@ var allfilecard = {
 	allfilecardVue = {
 		template:'#filecards',
 		created:allfilecard.created,
-		data(){
+		data:function(){
 			return allfilecard.datas
 		},
 		methods:allfilecard.methods,

@@ -30,7 +30,7 @@ var allcomment = {
 		template:'#all-comment',
 		created:allcomment.created,
 		components:allcomment.components,
-		data(){
+		data:function(){
 			return allcomment.datas
 		},
 		methods:allcomment.methods,

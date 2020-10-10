@@ -42,7 +42,7 @@ var leftchatinfo = {
 		created:leftchatinfo.created,
 		props:leftchatinfo.props,
 		components:leftchatinfo.components,
-		data(){
+		data:function(){
 			return leftchatinfo.datas
 		},
 		methods:leftchatinfo.methods,

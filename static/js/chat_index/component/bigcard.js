@@ -17,7 +17,7 @@ var allbigcard = {
 	allbigcardVue = {
 		template:'#bigcard',
 		created:allbigcard.created,
-		data(){
+		data:function(){
 			return allbigcard.datas
 		},
 		methods:allbigcard.methods,
