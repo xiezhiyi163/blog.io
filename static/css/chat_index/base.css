@@ -302,10 +302,11 @@ html,body{
 	height: 66px;
 	padding: 5px 10px 0px;
 	color: #666;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
-	overflow: hidden;
 }
 .bigcardwrap .imgs {
 	padding: 5px 5px 10px;
