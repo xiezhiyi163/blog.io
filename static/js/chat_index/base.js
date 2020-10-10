@@ -1,9 +1,9 @@
 var created_ = function(){},
 	components_ = {
 		nulls:{template:' '},
-		allcommentVue,
-		alldynamicVue,
-		alluserVue,
+		allcommentVue:allcommentVue,
+		alldynamicVue:alldynamicVue,
+		alluserVue:alluserVue,
 		leftchatinfo:leftchatinfoVue,
 		rightchatinfo:rightchatinfoVue,
 		filecards:allfilecardVue,
