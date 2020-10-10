@@ -2,7 +2,8 @@
 html,body{
 	position: relative;
 	overflow: hidden;
-	user-select:none
+	user-select:none;
+	font-family: "arial";
 }
 .chatwrap {
 	display: table;	
