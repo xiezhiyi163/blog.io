@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/elementui/elementui.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/admin_wshy_index/pay_expressDelivery.css"/>
+	</head>
+	<body>
+		<!-- slot插槽可以在template包裹内容和标签包裹内容之间互换位置使用 -->
+		<template id="infochoosewrap">
+			<div class="infochoosewrap">
+				<div slot="paytype" style="margin: 20px;">
+					<p style="margin-bottom: 20px;">支付类型</p>
+					<el-select v-model="paytype" style="width: 100%;" @change="choosetype({t:'pay'})">
+						<el-option value="1">1</el-option>
+						<el-option value="2">2</el-option>
+						<el-option value="3">3</el-option>
+					</el-select>
+				</div>
+				<div slot="mailtype" style="margin: 20px;">
+					<p style="margin-bottom: 20px;">物流类型</p>
+					<el-select v-model="mailtype" style="width: 100%;" @change="choosetype({t:'mail'})">
+						<el-option value="1">1</el-option>
+						<el-option value="2">2</el-option>
+						<el-option value="3">3</el-option>
+					</el-select>
+				</div>
+			</div>
+		</template>
+		<template id="cardComponent_">
+			<div class="cardwrap">
+				<div>
+					<hr class="hr">
+					<div style="margin: 0px 0px 20px;" v-if="false">
+						<i class="fa" :class="listallcheck?'fa-check-square':'fa-square-o'"></i>全选
+					</div>
+					<div class="carditemwrap" v-for="v in listdata" style="padding-bottom: 20px;">
+						<i class="fa" :class="v['check']?'fa-check-square':'fa-square-o'" v-if="false"></i>
+						<div class="carditem" v-for="(vs,is) in listtitles">
+							<div lang="title">{{vs}}:</div>
+							<div v-if="listprops[is] != 'img'" style="word-break: break-all;">{{v[listprops[is]]}}</div>
+							<div v-if="listprops[is] == 'img'" style="color: #00BDFF;word-break: break-all;">查看图片</div>
+						</div>
+					</div>
+				</div>
+				<i style="height: 20px;display: block;"></i>
+			</div>
+		</template>
+		<div id="app" style="visibility: hidden;">
+			<div class="tablewrap">
+				<div class="tables">
+					<div :style="{width:getsign=='win'?winwidth-381+'px':'100%'}">
+						<div class="tabandchoose-btn">
+							<div class="tab-change">
+								<p class="tab-pay" @click="tabtype = 'pay';tabchooseflag = false;scrolltop()" :style="{backgroundColor:tabtype == 'pay'&&!tabchooseflag?'':'#eee'}">支付概况</p>
+								<p class="tab-expressDelivery" @click="tabtype = 'mail';tabchooseflag = false;scrolltop()" :style="{backgroundColor:tabtype == 'mail'&&!tabchooseflag?'':'#eee'}">物流概况</p>
+							</div>			
+							<div class="choose-btn" v-show='getsign=="mob"' @click="tabchooseflag = !tabchooseflag" :style="{backgroundColor:tabchooseflag?'':'#eee'}">
+								<i class="fa fa-bars"></i>
+							</div>
+						</div>
+						<div class="tablescrollwrap" :style="{height:winheight-61+'px'}">
+							<!--  -->
+							<div data-title="paywrap" v-show="tabtype == 'pay'&&!tabchooseflag">
+								<el-table :data="listdata.pay" v-show='getsign=="win"'>
+									<el-table-column label="日期">
+										<template slot-scope="pay">
+											<div style="text-align: center;">
+												<span :accesskey="pay.$index">{{pay.row.date}}</span>											
+											</div>
+										</template>
+									</el-table-column>
+									<el-table-column label="价格">
+										<template slot-scope="pay">
+											<div style="text-align: center;">
+												<span :accesskey="pay.$index">{{pay.row.price}}</span>
+											</div>
+										</template>
+									</el-table-column>
+									<el-table-column label="客户名称">
+										<template slot-scope="pay">
+											<div style="text-align: center;">
+												<span :accesskey="pay.$index">{{pay.row.nick}}</span>
+											</div>
+										</template>
+									</el-table-column>
+								</el-table>
+								<div v-show='getsign=="mob"' class="mob">
+									<cardlist :listprops='tableprops.pay' :listtitles='tabletitle.pay' :listdata='listdata.pay'></cardlist>
+								</div>
+							</div>
+							<!--  -->
+							<div data-title="expressDelivery" v-show="tabtype == 'mail'&&!tabchooseflag">
+								<el-table :data="listdata.mail" v-show='getsign=="win"'>
+									<el-table-column label="发货日期">
+										<template slot-scope="mail">
+											<div style="text-align: center;">
+												<span :accesskey="mail.$index">{{mail.row.sdate}}</span>
+											</div>
+										</template>
+									</el-table-column>
+									<el-table-column label="买家收货日期">
+										<template slot-scope="mail">
+											<div style="text-align: center;">
+												<span :accesskey="mail.$index">{{mail.row.gdate}}</span>
+											</div>
+										</template>
+									</el-table-column>
+									<el-table-column label="发货人">
+										<template slot-scope="mail">
+											<div style="text-align: center;">
+												<span :accesskey="mail.$index">{{mail.row.fnick}}</span>
+											</div>
+										</template>
+									</el-table-column>
+									<el-table-column label="收货人">
+										<template slot-scope="mail">
+											<div style="text-align: center;">
+												<span :accesskey="mail.$index">{{mail.row.nick}}</span>
+											</div>
+										</template>
+									</el-table-column>
+								</el-table>
+								<div v-show='getsign=="mob"' class="mob">
+									<cardlist :listprops='tableprops.mail' :listtitles='tabletitle.mail' :listdata='listdata.mail'></cardlist>
+								</div>
+							</div>	
+							<!--  -->
+							<div data-title="typechoose" v-show="tabchooseflag == true">
+								<infochoose @choose='typechoose'>
+									<slot name="paytype"></slot>
+									<slot name="mailtype"></slot>
+								</infochoose>						
+							</div>
+						</div>						
+					</div>
+				</div>
+				<div class="infochoose" v-show='getsign=="win"'>
+					<infochoose @choose='typechoose'>
+						<slot name="paytype"></slot>
+						<slot name="mailtype"></slot>
+					</infochoose>						
+				</div>				
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/elementui/elementui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/admin_wshy_index/pay_expressDelivery.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

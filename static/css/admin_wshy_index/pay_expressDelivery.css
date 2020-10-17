@@ -1,0 +1,93 @@
+@charset "utf-8";
+.tablewrap {
+	display: table;
+	width: 100%;
+}
+.tablewrap div[class="tables"],.tablewrap div[class="infochoose"] {
+	display: table-cell;
+	vertical-align: top;
+}
+.tablewrap div[class="tables"] {
+	width: 100%;
+	border-right: 1px solid #ccc;
+}
+.tabandchoose-btn {
+	display: table;
+	width: 100%;
+}
+.tab-change,.choose-btn {
+	display: table-cell;
+	vertical-align: top;
+}
+.choose-btn {
+	line-height: 60px;
+	text-align: center;
+	width: 60px;
+	height: 60px;
+}
+.tablewrap div[class="infochoose"] .infochoosewrap {
+	width: 380px;
+}
+.tab-change {
+	display: table;
+	width: 100%;
+}
+.choose-btn,.tab-change {
+	border-bottom: 1px solid #ccc;
+}
+.tab-change p[class="tab-pay"],.tab-change p[class="tab-expressDelivery"] {
+	display: table-cell;
+	width: 50%;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	vertical-align: top;
+}
+
+.tablescrollwrap {
+	position: relative;
+	overflow-y: auto;
+}
+.tablescrollwrap th {
+	text-align: center;
+	font-style: normal;/*italic,oblique*/
+}
+.mob .cardwrap {
+	margin: 0 30px;
+}
+.mob .cardwrap>div {
+	border-bottom: 1px solid #333;
+}
+.mob .hr {
+	height: 1px;background-color: #fff;margin-bottom: 20px;
+}
+.mob i {
+	margin-right: 10px;
+}
+.mob .carditemwrap {
+	position: relative;
+	border: 1px solid #333;
+	margin-bottom: 20px;
+	padding: 20px 0px 0;
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 0;
+}
+.mob .carditemwrap i {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px 5px 0 0;
+}
+.mob .carditem {
+	display: table;
+	width: 100%;
+	margin:10px 0px 0;
+}
+.mob .carditem div {
+	display: table-cell;
+	transform: scale(0.9);
+}
+.mob .carditem div[lang='title'] {
+	width: 80px;
+}

@@ -53,6 +53,12 @@ var created_ = function(){},
 			hash:'account',
 			children:[]
 		},{
+			title:'物流支付',
+			icon:'money',//有其他可用其他代替
+			route:'admin_wshy_pay_expressDelivery.html',
+			hash:'pay_expressDelivery',
+			children:[]
+		},{
 			title:'投诉管理',
 			icon:'pencil',//有其他可用其他代替
 			route:'admin_wshy_remind.html',

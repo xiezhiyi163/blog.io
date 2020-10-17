@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<style type="text/css">
+			.main{
+				font-size: 24px;
+			}
+			.main>p{
+				margin:0 0 20px;
+				white-space: pre-line;				
+			}
+			.main .first {margin: -30px 0 0 0;}
+		</style>
+	</head>
+	<body>
+		<div style="max-width: 1200px;margin: auto;padding:20px;">
+			<h1 style="color: #6c60b4;"><i class="fa fa-file-text-o" style="margin-right: 20px;"></i>重点的w3c标准整理</h1>
+			<hr style="height: 1px;background-color: #333333;margin-top: 15px;margin-bottom: 40px;"/>
+			<div class="main">
+				<p class="first">
+					1.文档类型声明：&lt;!DOCTYPE html&gt;
+					2.名字空间namespace：
+					----html属性xmlns="http://www.w3.org/1999/xhtml",这个“xmlns”是XHTML namespace的缩写，叫做“名字空间”声明。
+					----现阶段我们只需要让它这个属性等于那个连接就行
+					3.meta标签定义语言的编码以及是否允许页面按比例通过浏览器放大
+					4.编写js的时候，script标签必须携带type属性，并且在script标签里面加个&lt;!--&gt;注释
+					5.css定义规范
+					6.不要在注释里面使用"--"
+					7.所有标签的属性值必须使用引号包起来
+					8.特殊符号必须使用编码来展示
+					9.标签结尾必须有斜杠，标签要合理嵌套，form表单里面增加label，for属性指向input的id关联起来
+				</p>
+				<p>
+					监听的分类，总共有以下几点：
+					1.底部到达之后触发的监听
+					2.利用滚动距离和元素距离顶部来监听被遮罩元素的悬停位置
+					3.手势滑动的监听，初始值和正在移动的值的对比
+				</p>
+				<p>
+					底部到达之后触发监听：
+					function(){
+						if(window.addEventlistener){
+						&nbsp;window.addEventlistener('scroll',function(){
+						&nbsp;&nbsp;//距离顶部和正文高度
+						&nbsp;&nbsp;var t，dh;
+						&nbsp;&nbsp;if(document.documentElement && document.documentElement.scrollTop) {
+						&nbsp;&nbsp;&nbsp;t = document.documentElement.scrollTop;
+						&nbsp;&nbsp;&nbsp;dh = document.documentElement.scrollHeight;
+						&nbsp;&nbsp;} else if(document.body) {
+						&nbsp;&nbsp;&nbsp;t = document.body.scrollTop;
+						&nbsp;&nbsp;&nbsp;dh = document.body.scrollHeight;
+						&nbsp;&nbsp;}
+						&nbsp;&nbsp;//窗口高度
+						&nbsp;&nbsp;var wh = window.innerHeight,
+						&nbsp;&nbsp;&nbsp;ddc = document.documentElement.clientHeight,
+						&nbsp;&nbsp;&nbsp;dbc = document.body.clientHeight,
+						&nbsp;&nbsp;&nbsp;th = wh?wh:ddc?ddc:dbc;
+						&nbsp;&nbsp;//开始计算
+						&nbsp;&nbsp;if(t>=dh-th){
+						&nbsp;&nbsp;&nbsp;。。。到达底部
+						&nbsp;&nbsp;}
+						&nbsp;})							
+						}else{
+						&nbsp;window.attachEvent('onscroll',function(){
+						&nbsp;&nbsp;同上
+						&nbsp;})							
+						}
+					}
+				</p>
+				<p>
+					利用滚动距离和元素距离顶部来监听被遮罩元素的悬停位置
+					1.给个离顶部的界定值，
+					2.当获取的值小于界定值的时候，并且大于界定值减去展示出来图片的高度时，开始触发逻辑，否则，》大于界定值，展示图片贴紧底部，》小于界定值减去展示出来图片的高度时，展示图片贴紧顶部；
+				</p>
+				<p>
+					手势滑动的监听，pc跟移动端（篇幅过长，具体已写在脚本那里）
+					//pc:mousedown-mousemove(逻辑)-mouseup(移除监听)
+					//位置初始值：pageX||clientX + 元素初始值
+					//mob:touchstart-touchmove(逻辑)-touchend(移除监听)
+					//位置初始值:touches[0].pageX||touches[0].clientX + 元素初始值
+					//最后把移动时候获取的touches[0].pageX||touches[0].clientX + 元素初始值,减去初始值,就是正确的移动的距离
+				</p>
+				<p>
+					一段时间来的开发经验：
+					导航：
+					像那些导航点击居中的需求基本都是移动端那边，比如使用swiper，pc基本上不会搞那种，至少目前没遇到有，
+					左侧导航的处理情况基本上不会做调换处理，多数都是权限处理那些；
+					轮播：
+					普通轮播，如果没有多出来，循环轮播就直接克隆一张，就行，多一张就克隆两张，以此类推
+					旋转木马，使用swiper来展示，低版本ie基本上手势滑动的不支持9或以下，只能9或以下寻求原生加jq的代替，原生加jq的目前只会做三个旋转那种，因为5个旋转那种如果数据一多起来，浏览器运算耗能会呈一个指数型增长，低版本浏览器不支持高效率的css，不建议那么去处理，会非常卡顿
+					多张逐个切换和走马灯那种也会，基本上那个只有展示企业赞助或技术支持的时候才会用到；
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var EventUntil = {
+				addhander:function(obj,type,fn,bool){
+					if(obj.addEventListener){
+						obj.addEventListener(type,fn,bool)
+					}else{
+						obj.attachEvent("on"+type,fn)
+					}
+				},
+				removehander:function(obj,type,fn,bool){
+					if(obj.removeEventListener){
+						obj.removeEventListener(type,fn,bool)
+					}else{
+						obj.detachEvent("on"+type,fn)
+					}
+				}				
+			},
+			mousemoveEvn = function(event,sx,sy){
+				//pc:mousedown-mousemove(逻辑)-mouseup(移除监听)
+				//位置初始值：pageX||clientX + 元素初始值
+				//mob:touchstart-touchmove(逻辑)-touchend(移除监听)
+				//位置初始值:touches[0].pageX||touches[0].clientX + 元素初始值
+				//最后把移动时候获取的touches[0].pageX||touches[0].clientX + 元素初始值,减去初始值,就是正确的移动的距离
+			},//封装一个相同的方法,同时给要监听和取消监听的使用
+			sx = 0,sy = 0,domX = 0,domY = 0;
+			EventUntil.addhander(window,'touchstart',function(){
+				sx = event.touches[0].pageX || event.touches[0].clientX + domX;
+				sy = event.touches[0].pageY || event.touches[0].clientY + domY;
+				EventUntil.addhander(window,'touchmove',function(){
+					mousemoveEvn(event,sx,sy)
+				},true);
+			},true);
+			EventUntil.addhander(window,'touchend',function(){
+				EventUntil.removehander(window,'touchmove',function(){
+					mousemoveEvn(event,sx,sy)
+				},true);
+			},true);
+		</script>	
+	</body>
+</html>

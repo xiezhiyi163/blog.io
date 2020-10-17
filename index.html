@@ -253,12 +253,12 @@
 		<script type="text/javascript">
 			var datas = {
 					datenum:'',
-					flink:'index_w3c标准难点记录.html',
+					flink:'index_w3c标准难点记录_监听的理解.html',
 					flink2:'',
 					linktype:'2',
 					moreleft:340,//340+50,主要是用这个判断移动端的dom大小操作
 					navlist:[
-						{v:'w3c标准难点记录',link:'index_w3c标准难点记录.html'},
+						{v:'w3c标准难点记录_监听的理解',link:'index_w3c标准难点记录_监听的理解.html'},
 						{v:'常见常用js思考方式',link:'index_js常见常用知识点.html'},
 						{v:'Vue的理解',link:'index_vue.html'},
 						{v:'React的理解',link:'index_react.html'},
@@ -440,6 +440,13 @@
 						this.listens()
 					}
 				})
+				
+				//原型和原型链test
+				var m = function(){}
+				console.log(m.prototype)
+				console.log(m.prototype.__proto__)
+				console.log(m.prototype.__proto__.__proto__)
+				console.log(m.__proto__.__proto__.__proto__)
 		</script>
 	</body>
 </html>
