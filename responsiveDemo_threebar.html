@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/mescroll/mescroll.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/responsicedemo/threebar_base.css"/>
+		<title></title>
+	</head>
+	<body>
+		<script src="static/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<div style="position: relative;overflow: hidden;height: 0;">
+			<template id="card_pic_video">
+				<div style="background-color: #eee;padding-bottom: 20px;">
+					<div class="card_avatar_nick">
+						<span class="card_avatar"></span>
+						<span class="card_nickname">nickname</span>
+					</div>
+					<div class="card_cont">
+						这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介
+					</div>
+					<div id="card_pic" style="margin: 20px;" v-if="true">
+						<div v-if="false" class="card_pic_video"></div>
+						<div v-if="false" class="card_pica">
+							<div class="card_pic1" style="border-right: 1px solid #ccc;"></div>
+							<div class="card_pic1"></div>
+						</div>
+						<div v-if="true" class="card_picb">
+							<div class="card_pic1" style="border-right: 1px solid #ccc;margin-left: -1px;"></div>
+							<div class="card_pic2" style="border-bottom: 1px solid #ccc;"></div>
+							<div class="card_pic2"></div>
+						</div>
+						<div v-if="false" class="card_picb">
+							<div class="card_pic2" style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;"></div>
+							<div class="card_pic2" style="border-bottom: 1px solid #ccc;"></div>
+							<div class="card_pic2" style="border-right: 1px solid #ccc;"></div>
+							<div class="card_pic2"></div>
+						</div>
+					</div>
+					<div id="card_video" style="margin: 20px;" v-if="false">
+						<div class="card_pic_video"></div>
+					</div>
+				</div>
+			</template>
+			<template id="cardavatar">
+				<div>
+					<div class="card_avatar_nick">
+						<span class="card_avatar cardavatar"></span>
+						<span class="card_nickname cardnickname">nickname</span>
+					</div>
+					<div class="cardaccount">@fdfds6655</div>
+					<span class="cardfollow">follow</span>
+				</div>
+			</template>
+		</div>
+		<div id="app" style="visibility: hidden;">
+			<!-- 
+				顶部
+			 -->
+			<div class="top">
+				<div class="topwrap" :style="{minWidth:'320px'}">
+					<div class="centerwrap">
+						<div class="centerwrapin">
+							<div class="searchwrap">
+								<div class="searchinputwrap">
+									<input type="text" placeholder="请输入搜索关键词">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="logowrap"></div>
+					<div class="settingwrap"></div>
+				</div>				
+			</div>
+			<!-- 
+				左边
+			 -->
+			<div id="left" class="left" :style="{height:winheight-61+'px'}">
+				<div id="iconwrap">
+					<div class="iconwrap" v-for="(v,i) in 25">
+						<span></span>
+					</div>
+				</div>
+				<div class="leftavatarwrap">
+					<span></span>
+					<div class="leftavatar"></div>				
+				</div>
+			</div>
+			<!-- 
+				右边
+			 -->
+			<div class="right" :style="{height:winheight-61+'px'}">
+				<div>
+					<p class="title">你可能感兴趣</p>
+					<div class="cardavatarwrap" v-for="(v,i) in 6">
+						<avatarcard></avatarcard>
+					</div>
+				</div>
+			</div>
+			<!-- 中间 -->
+			<div class="contwrap" :style="{minWidth:'320px'}">
+				<div class="cont mes" id="cont" :style="{height:winheight-61+'px'}">
+					<div style="border-bottom: 10px solid #fff;" v-for="(v,i) in 3">
+						<card></card>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/respond.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/mescroll/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/responsive_demo/threebar_base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

@@ -2,6 +2,8 @@
 
 该仓库包含包括博客和以下项目的链接
 
+以下项目均不支持或勉强支持ie9或以上版本浏览器
+
 移动端原生+vue开发可下拉刷新上拉加载的项目：
 https://xiezhiyi163.github.io/blog.io/index_wshy_index.html
 
@@ -13,7 +15,12 @@ https://xiezhiyi163.github.io/blog.io/admin_wshy_index.html
 可两端使用的聊天项目：
 https://xiezhiyi163.github.io/blog.io/chat_index.html
 
+可两端使用的可拓展三栏布局项目：
+https://xiezhiyi163.github.io/blog.io/responsiveDemo_threebar.html
+
 个人能力现在可以处理一些比较常见的web h5布局，小程序，以及一些简单的文件上传功能，续点上传到时候需要后端那边简单处理然后对接下才能去搞一搞
+
+目前我所理解的项目开发思路就是，先清边距，然后研究是否用框架实例化页面结构，然后再进行引入其他插件去进行页面编写开发，写组件的时候我会先考虑css单独可不可以解决，如果css不能解决再去加上js去搞定
 
 打不开就试着改hosts
 
