@@ -36,6 +36,55 @@ var created_ = function(){},
 	datas = {
 		winwidth:window.innerWidth?window.innerWidth:document.documentElement.clientWidth?document.documentElement.clientWidth:document.body.clientWidth,
 		winheight:window.innerHeight?window.innerHeight:document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight,
+		leftnav:[
+			{
+				path:'',
+				title:'首页',
+				icon:'',
+				children:[]
+			},{
+				path:'',
+				title:'通知',
+				icon:'',
+				children:[]
+			},{
+				path:'',
+				title:'我的好友',
+				icon:'',
+				children:[
+					{
+						path:'',
+						title:'我的关注',
+						icon:'',
+						children:[]
+					},
+					{
+						path:'',
+						title:'我的关注',
+						icon:'',
+						children:[]
+					},
+					{
+						path:'',
+						title:'我的关注',
+						icon:'',
+						children:[]
+					},
+					{
+						path:'',
+						title:'我的关注',
+						icon:'',
+						children:[]
+					},
+					{
+						path:'',
+						title:'我的粉丝',
+						icon:'',
+						children:[]
+					}
+				]
+			}
+		],
 		//lefttouchslide需要的字段
 		ex:0,
 		ey:0,
@@ -48,6 +97,15 @@ var created_ = function(){},
 		endingY:0,
 	},
 	methods_ = {
+		//获取设备标识
+		ifpc:function(){
+			var UA = navigator.userAgent
+			if(UA.indexOf('Windows') != -1 || UA.indexOf('Macintosh') != -1) {
+				return 'win'
+			} else {
+				return 'mob'
+			}
+		},
 		//获取屏幕宽和高
 		getwidthandheight:function(type){
 			if(type == 'w'){
@@ -123,6 +181,9 @@ var created_ = function(){},
 			var ev = event||window.event
 			var lh = document.getElementById('left').offsetHeight			
 			var oh = document.getElementById('iconwrap').offsetHeight//
+			if(oh<lh-60){
+				return
+			}
 			if(type=='m'){
 				this.endX = (ev.pageX || ev.clientX + (document.body.scrollLeft || document.documentElement.scrollLeft))-this.startX
 				this.endY = (ev.pageY || ev.clientY + (document.body.scrollTop || document.documentElement.scrollTop))-this.startY

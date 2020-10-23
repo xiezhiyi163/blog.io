@@ -74,12 +74,25 @@
 				</div>				
 			</div>
 			<!-- 
-				左边
+				左边(滚轮滑动，手势（鼠标）滑动，自适应来调整位置)
 			 -->
 			<div id="left" class="left" :style="{height:winheight-61+'px'}">
 				<div id="iconwrap">
-					<div class="iconwrap" v-for="(v,i) in 25">
-						<span></span>
+					<div class="iconwrap" v-for="(v,i) in leftnav">
+						<div class="icon-item" v-if="v.children.length==0">
+							<span class="icon-item-logo"></span>		
+							<span class="icon-item-title">{{v.title}}</span>
+						</div>
+						<div class="icon-item1" v-if="v.children.length!=0">
+							<span class="icon-item-logo"></span>
+							<div class="icon-item-subnav">
+								<div class="icon-item-subnavin" @touchstart.stop=" " @mousedown.stop=" " @mousewheel.stop=" ">
+									<div class="icon-item-subitem" v-for="(val,ind) in v.children" :style="{borderBottom: ind==v.children.length-1?'0px solid':'1px solid #ccc'}">
+										{{val.title}}
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="leftavatarwrap">
