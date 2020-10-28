@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" href="static/css/pcss.css">
+		<link rel="stylesheet" type="text/css" href="static/css/responsicedemo/maxAndMin_base.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/responsicedemo/maxAndMin_mediabase.css"/>
+	</head>
+	<!-- 
+		@container
+		{
+			假设：180一个item宽
+			一个广告：240
+			间隔：10
+			就是：4*190+240
+			处理media的时候：一个个item地加就行
+		}
+	 -->
+	<body>
+		<div id="app">
+			<div id="container">
+				<div>
+					<div id="danmuwrap">
+						<!-- 追加弹幕的区域 -->
+					</div>
+					<div class="inputwrap"></div>
+				</div>
+				<p style="margin: 10px 0;height: 100px;background-color: #ccc;"></p>
+				<div>
+					<div class="mainslider"></div>
+					<div class="mainitemwrap">
+						<div class="mainitems">
+							<div class="items" v-for="(v,i) in 12"></div>							
+							<div class="clearboth"></div>
+						</div>
+					</div>
+					<div class="clearboth"></div>
+				</div>
+				<p style="margin: 10px 0;height: 100px;background-color: #ccc;"></p>
+				<div style="margin-top: 10px;">
+					<div class="mainitemwrap2">
+						<div class="mainitems2">
+							<div class="items2" v-for="(v,i) in 14"></div>							
+							<div class="clearboth"></div>
+						</div>
+					</div>
+					<div class="adslider"></div>
+					<div class="clearboth"></div>
+				</div>
+			</div>
+		</div>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/responsive_demo/maxAndMin_base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
