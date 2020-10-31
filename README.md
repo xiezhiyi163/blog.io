@@ -18,6 +18,9 @@ https://xiezhiyi163.github.io/blog.io/chat_index.html
 可两端使用的可拓展三栏布局项目：
 https://xiezhiyi163.github.io/blog.io/responsiveDemo_threebar.html
 
+单一栏指定尺寸改变宽高的布局项目（内含弹幕系统案例）：
+https://xiezhiyi163.github.io/blog.io/responsiveDemo_maxAndMin.html
+
 个人能力现在可以处理一些比较常见的web h5布局，小程序，以及一些简单的文件上传功能，续点上传到时候需要后端那边简单处理然后对接下才能去搞一搞
 
 目前我所理解的项目开发思路就是，先清边距，然后研究是否用框架实例化页面结构，然后再进行引入其他插件去进行页面编写开发，写组件的时候我会先考虑css单独可不可以解决，如果css不能解决再去加上js去搞定

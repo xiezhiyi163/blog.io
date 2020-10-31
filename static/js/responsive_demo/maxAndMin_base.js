@@ -1,73 +1,28 @@
-var created_ = function(){
+var danmuboxVue_created = function(){
 		
 	},
-	datas = {
-		//@danmudata
-		num:0,
-		danmudatas:[
-			//time是模拟弹幕出现时间
-			{text:'测试弹幕测试弹幕测试弹幕',id:'did1',type:'left',time:10},
-			{text:'3355226',id:'did2',type:'left',time:20},
-			{text:'3355226',id:'did3',type:'left',time:30},
-			{text:'3355226',id:'did4',type:'left',time:40},
-			{text:'3355226',id:'did5',type:'left',time:50},
-			{text:'3355226',id:'did6',type:'left',time:60},
-			{text:'3355226',id:'did7',type:'left',time:70},//
-			{text:'3355226',id:'did2a',type:'left',time:520},
-			{text:'3355226',id:'did3a',type:'left',time:530},
-			{text:'3355226',id:'did4a',type:'left',time:540},
-			{text:'3355226',id:'did5a',type:'left',time:550},
-			{text:'3355226',id:'did6a',type:'left',time:560},
-			{text:'3355226',id:'did7a',type:'left',time:570},//
-			{text:'3355226',id:'did2b',type:'left',time:920},
-			{text:'3355226',id:'did3b',type:'left',time:930},
-			{text:'3355226',id:'did4b',type:'left',time:940},
-			{text:'3355226',id:'did5b',type:'left',time:950},
-			{text:'3355226',id:'did6b',type:'left',time:960},
-			{text:'3355226',id:'did7b',type:'left',time:970},
-			{text:'3355226',id:'tdid1',type:'top',time:10},
-			{text:'测试弹幕',id:'tdid2',type:'top',time:20},
-			{text:'3355226',id:'tdid3',type:'top',time:30},
-			{text:'3355226',id:'tdid4',type:'top',time:40},
-			{text:'3355226',id:'tdid5',type:'top',time:50},
-			{text:'3355226',id:'tdid6',type:'top',time:60},
-			{text:'3355226',id:'tdid7',type:'top',time:70},//
-			{text:'3355226',id:'tdid2a',type:'top',time:520},
-			{text:'3355226',id:'tdid3a',type:'top',time:530},
-			{text:'3355226',id:'tdid4a',type:'top',time:540},
-			{text:'3355226',id:'tdid5a',type:'top',time:550},
-			{text:'3355226',id:'tdid6a',type:'top',time:560},
-			{text:'3355226',id:'tdid7a',type:'top',time:570},//
-			{text:'3355226',id:'tdid2b',type:'top',time:920},
-			{text:'3355226',id:'tdid3b',type:'top',time:930},
-			{text:'3355226',id:'tdid4b',type:'top',time:940},
-			{text:'3355226',id:'tdid5b',type:'top',time:950},
-			{text:'3355226',id:'tdid6b',type:'top',time:960},
-			{text:'3355226',id:'tdid7b',type:'top',time:970},
-			{text:'3355226',id:'bdid1',type:'bottom',time:10},
-			{text:'3355226',id:'bdid2',type:'bottom',time:20},
-			{text:'3355226',id:'bdid3',type:'bottom',time:30},
-			{text:'3355226',id:'bdid4',type:'bottom',time:40},
-			{text:'3355226',id:'bdid5',type:'bottom',time:50},
-			{text:'3355226',id:'bdid6',type:'bottom',time:60},
-			{text:'3355226',id:'bdid7',type:'bottom',time:70},//
-			{text:'3355226',id:'bdid2a',type:'bottom',time:520},
-			{text:'3355226',id:'bdid3a',type:'bottom',time:530},
-			{text:'3355226',id:'bdid4a',type:'bottom',time:540},
-			{text:'3355226',id:'bdid5a',type:'bottom',time:550},
-			{text:'3355226',id:'bdid6a',type:'bottom',time:560},
-			{text:'3355226',id:'bdid7a',type:'bottom',time:570},//
-			{text:'3355226',id:'bdid2b',type:'bottom',time:920},
-			{text:'3355226',id:'bdid3b',type:'bottom',time:930},
-			{text:'3355226',id:'bdid4b',type:'bottom',time:940},
-			{text:'3355226',id:'bdid5b',type:'bottom',time:950},
-			{text:'3355226',id:'bdid6b',type:'bottom',time:960},
-			{text:'3355226',id:'bdid7b',type:'bottom',time:970},
-		]
+	danmuboxVue_props = {
+		'danmudatas':{
+			type:null
+		}
 	},
-	methods_ = {
+	danmuboxVue_data = {
+		num:0,
+	},
+	danmuboxVue_methods = {
+		removeElement:function (_element){
+			var _parentElement = _element.parentNode;
+			if(_parentElement){
+				_parentElement.removeChild(_element);
+			}
+		},
 		// @danmu
+		/*{
+			弹幕系统进行了两个字的时候的弹幕压力测试，足够满足弹幕非常多但不像下面那种的弹幕情况的使用
+			拓展：可使用animation-play-state进行动画控制暂停，我这个没有做动画，只做了transition
+		}*/
 		setdanmu:function(text,ids,type){//弹幕发射的逻辑
+			this.num = 0;//防止出现后面没有弹幕但却在中间发送的情况
 			var danmuwrap_ = document.getElementById('danmuwrap')
 			//以25高的距离为基准
 			if(type=='left')
@@ -100,9 +55,11 @@ var created_ = function(){
 							if(lengths2[lengths2.length-1]){
 								if(lengths2[lengths2.length-1].offsetLeft < danmuwrap_.offsetWidth-lengths2[lengths2.length-1].offsetWidth){
 									dom.id = ids;
+									dom.style.transition = 0+'ms linear'
 									dom.className = 'dans dan'+_this.num;
 									dom.style.top = (nums)*25+'px'
 									danmuwrap_.appendChild(dom)
+									dom.style.transition = 50500+'ms linear'
 									dom.style.right = -dom.offsetWidth+'px'
 									_this.num = 0		
 									window['danmumove'+ids] = function(){
@@ -113,9 +70,11 @@ var created_ = function(){
 								}					
 							}else{
 								dom.id = ids;
+								dom.style.transition = 0+'ms linear'
 								dom.className = 'dans dan'+_this.num;
 								dom.style.top = (nums)*25+'px'
 								danmuwrap_.appendChild(dom)
+								dom.style.transition = 50500+'ms linear'
 								dom.style.right = -dom.offsetWidth+'px'
 								_this.num = 0							
 								window['danmumove'+ids] = function(){
@@ -128,10 +87,12 @@ var created_ = function(){
 					}else{
 						_this.num++;
 						dom.id = ids;
+						dom.style.transition = 0+'ms linear'
 						dom.className = 'dans dan'+_this.num;
 						dom.style.top = (_this.num-1)*25+'px'
 						danmuwrap_.appendChild(dom)
-						dom.style.right = -dom.offsetWidth+10+'px'
+						dom.style.transition = 50500+'ms linear'
+						dom.style.right = -dom.offsetWidth+'px'
 						_this.num = 0
 						window['danmumove'+ids] = function(){
 							_this.danmumoving_(ids,text.length)
@@ -199,17 +160,41 @@ var created_ = function(){
 			}
 		},
 		danmutophidden_:function(ids){
+			var _this = this;
 			setTimeout(function(){
-				document.getElementById(ids).remove()
+				_this.removeElement(document.getElementById(ids))
 			},5000)
 		},
 		danmumoving_:function(ids,textl){
-			if(Number(document.getElementById(ids).style.right.split('px')[0]) > document.getElementById('danmuwrap').offsetWidth){
-				document.getElementById(ids).remove()
-				return;
+			var _this = this;
+			if(Number(document.getElementById(ids).style.right.split('px')[0]) > document.getElementById('danmuwrap').offsetWidth){}
+			document.getElementById(ids).style.right = 18000 + 'px'
+		},
+		cleardanmuinterval:function(){
+			var _this = this;
+			var lengths2 = document.querySelectorAll('.dans')
+			if(lengths2.length!=0){
+				for(var i = 0;i<lengths2.length;i++){
+					if(lengths2[i].offsetLeft<-lengths2[i].offsetWidth){
+						this.removeElement(lengths2[i])
+					}
+				}				
 			}
-			document.getElementById(ids).style.right = Number(document.getElementById(ids).style.right.split('px')[0]) +2 + 'px'
-			setTimeout(window['danmumove'+ids],5)
+			setTimeout(function(){
+				_this.cleardanmuinterval()
+			},300)
+		},
+		getdanmudata:function(){
+			var nums = 0
+			for(var i = 0;i<5000;i++){
+				nums++;
+				if((i+1)%2==0){
+					this.danmudatas.push({text:'惊了个巴子',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
+				}else{
+					this.danmudatas.push({text:'惊了',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
+				}
+			};
+			this.danmuload()
 		},
 		danmuload:function(){//遍历数据并进行弹幕加载，模拟哪一时刻出现的弹幕，真正使用的时候得要修改这里的逻辑，把time作为视频的哪一个时间位置进行发射弹幕
 			var _this = this;
@@ -219,21 +204,260 @@ var created_ = function(){
 					_this.setdanmu(texts2,ids2,types2)//发送弹幕和弹幕加载
 				},times2)				
 			}
-			for(var i = 0;i<this.danmudatas.length;i++){
+			for(var i = 0;i<_this.danmudatas.length;i++){
 				texts = _this.danmudatas[i].text
 				types = _this.danmudatas[i].type
 				ids = _this.danmudatas[i].id
 				times = _this.danmudatas[i].time;
 				m(texts,types,ids,times)
 			}
+		},
+		senddanmu:function(){
+			this.setdanmu('测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕','ids2'+new Date().getTime(),'left')
+		},
+	},
+	danmuboxVue_mounted = function(){
+		this.getdanmudata()
+		this.cleardanmuinterval()
+	},
+	danmuboxVue = {
+		template:"#danmubox",
+		props:danmuboxVue_props,
+		created:danmuboxVue_created,
+		data:function(){
+			return danmuboxVue_data
+		},
+		methods:danmuboxVue_methods,
+		mounted:danmuboxVue_mounted
+	};
+	/* 
+		-------------
+	 */
+var danmuboxb_created = function(){
+		
+	},
+	danmuboxb_props = {
+		danmudatas:{
+			type:null,
 		}
 	},
+	danmuboxb_data = {
+		winwidth:''
+	},
+	danmuboxb_methods = {
+		getwidthandheight:function(type){
+			if(type == 'w'){
+				var ww = window.innerWidth,
+					ddw = document.documentElement.clientWidth,
+					dbw = document.body.clientWidth,
+					tw = ww?ww:ddw?ddw:dbw;
+				return tw							
+			}else{
+				var wh = window.innerHeight,
+					ddc = document.documentElement.clientHeight,
+					dbc = document.body.clientHeight,
+					th = wh?wh:ddc?ddc:dbc;
+				return th							
+			}
+		},
+		//danmu移动
+		getdanmu:function(num){
+			var _this = this;
+			if(num == 3){//3为即将追加的索引
+				document.querySelector('#danmuwrapb1').appendChild((function(){
+					var dom = document.createElement('span');
+					dom.className = 'danmuitem1';
+					dom.innerHTML = _this.danmudatas[0].text
+					return dom;
+				})())
+				document.querySelector('#danmuwrapb2').appendChild((function(){
+					var dom = document.createElement('span');
+					dom.className = 'danmuitem2';
+					dom.innerHTML = _this.danmudatas[1].text
+					return dom;
+				})())
+				document.querySelector('#danmuwrapb3').appendChild((function(){
+					var dom = document.createElement('span');
+					dom.className = 'danmuitem3';
+					dom.innerHTML = _this.danmudatas[2].text
+					return dom;
+				})())	
+				var n = num+1
+				this.getdanmu(n)
+			}else{
+				var doms1 = document.querySelectorAll('.danmuitem1')
+				var doms2 = document.querySelectorAll('.danmuitem2')
+				var doms3 = document.querySelectorAll('.danmuitem3')
+				var doms1l = 0
+				var doms2l = 0
+				var doms3l = 0
+				for(var i = 0;i<doms1.length;i++){
+					doms1l+=doms1[i].offsetWidth+18
+				}
+				for(var i = 0;i<doms2.length;i++){
+					doms2l+=doms2[i].offsetWidth+18
+				}
+				for(var i = 0;i<doms3.length;i++){
+					doms3l+=doms3[i].offsetWidth+18
+				}
+				var a=[{type:'1',num:doms1l},{type:'2',num:doms2l},{type:'3',num:doms3l}],t;
+				for(var i=0;i<a.length;i++){
+				  for(var j=0;j<a.length-1;j++){//-1
+					 if(a[j].num>a[j+1].num){//这个成立的时候，保存前面的为临时值，然后互换，前面的等于+1的，然后+1的那个等于临时的
+						t=a[j];
+						a[j]=a[j+1];
+						a[j+1]=t; 
+					 }
+				   }
+				}
+				document.querySelector('#danmuwrapb'+a[0].type).appendChild((function(){
+					var dom = document.createElement('span');
+					dom.className = 'danmuitem'+a[0].type;
+					dom.innerHTML = _this.danmudatas[num].text
+					return dom;
+				})())
+				if(num<_this.danmudatas.length-1){
+					var n = num+1
+					this.getdanmu(n)
+				}else{
+					this.danmumoveing()
+				}
+			}
+		},
+		danmumoveing:function(){
+			var n = document.getElementById('danmuwrapb').offsetLeft<0?-document.getElementById('danmuwrapb').offsetLeft:document.getElementById('danmuwrapb').offsetLeft
+			if(n>document.getElementById('danmuwrapb').offsetWidth&&document.getElementById('danmuwrapb').offsetLeft<0){
+				return;
+			}
+			document.getElementById('danmuwrapb').style.left = document.getElementById('danmuwrapb').offsetLeft - 1 + 'px'
+			setTimeout(this.danmumoveing,10)
+		}
+	},
+	danmuboxb_mounted = function(){
+		this.winwidth = this.getwidthandheight('w')
+		this.getdanmu(3)
+	},
+	danmuboxbVue = {
+		template:'#danmuboxB',
+		created:danmuboxb_created,
+		props:danmuboxb_props,
+		data:function(){
+			return danmuboxb_data
+		},
+		methods:danmuboxb_methods,
+		mounted:danmuboxb_mounted
+	};
+	/* 
+		-------------app
+	 */
+var created_ = function(){
+		
+	},
+	components_ = {
+		danmubox:danmuboxVue,
+		danmuboxb:danmuboxbVue,
+	},
+	datas = {
+		danmutype:'bilibili',
+		bilibilidanmudatas:[
+			//time是模拟弹幕出现时间
+			{text:'测试弹幕测试弹幕测试弹幕',id:'did1',type:'left',time:10},
+			{text:'3355226',id:'did2',type:'left',time:20},
+			{text:'3355226',id:'did3',type:'left',time:30},
+			{text:'3355226',id:'did4',type:'left',time:40},
+			{text:'3355226',id:'did5',type:'left',time:50},
+			{text:'3355226',id:'did6',type:'left',time:60},
+			{text:'3355226',id:'did7',type:'left',time:70},//
+			{text:'3355226',id:'did2a',type:'left',time:520},
+			{text:'3355226',id:'did3a',type:'left',time:530},
+			{text:'3355226',id:'did4a',type:'left',time:540},
+			{text:'3355226',id:'did5a',type:'left',time:550},
+			{text:'3355226',id:'did6a',type:'left',time:560},
+			{text:'3355226',id:'did7a',type:'left',time:570},//
+			{text:'3355226',id:'did2b',type:'left',time:920},
+			{text:'3355226',id:'did3b',type:'left',time:930},
+			{text:'3355226',id:'did4b',type:'left',time:940},
+			{text:'3355226',id:'did5b',type:'left',time:950},
+			{text:'3355226',id:'did6b',type:'left',time:960},
+			{text:'3355226',id:'did7b',type:'left',time:970},
+			{text:'3355226',id:'tdid1',type:'top',time:10},
+			{text:'测试弹幕',id:'tdid2',type:'top',time:20},
+			{text:'3355226',id:'tdid3',type:'top',time:30},
+			{text:'3355226',id:'tdid4',type:'top',time:40},
+			{text:'3355226',id:'tdid5',type:'top',time:50},
+			{text:'3355226',id:'tdid6',type:'top',time:60},
+			{text:'3355226',id:'tdid7',type:'top',time:70},//
+			{text:'3355226',id:'tdid2a',type:'top',time:520},
+			{text:'3355226',id:'tdid3a',type:'top',time:530},
+			{text:'3355226',id:'tdid4a',type:'top',time:540},
+			{text:'3355226',id:'tdid5a',type:'top',time:550},
+			{text:'3355226',id:'tdid6a',type:'top',time:560},
+			{text:'3355226',id:'tdid7a',type:'top',time:570},//
+			{text:'3355226',id:'tdid2b',type:'top',time:920},
+			{text:'3355226',id:'tdid3b',type:'top',time:930},
+			{text:'3355226',id:'tdid4b',type:'top',time:940},
+			{text:'3355226',id:'tdid5b',type:'top',time:950},
+			{text:'3355226',id:'tdid6b',type:'top',time:960},
+			{text:'3355226',id:'tdid7b',type:'top',time:970},
+			{text:'3355226',id:'bdid1',type:'bottom',time:10},
+			{text:'3355226',id:'bdid2',type:'bottom',time:20},
+			{text:'3355226',id:'bdid3',type:'bottom',time:30},
+			{text:'3355226',id:'bdid4',type:'bottom',time:40},
+			{text:'3355226',id:'bdid5',type:'bottom',time:50},
+			{text:'3355226',id:'bdid6',type:'bottom',time:60},
+			{text:'3355226',id:'bdid7',type:'bottom',time:70},//
+			{text:'3355226',id:'bdid2a',type:'bottom',time:520},
+			{text:'3355226',id:'bdid3a',type:'bottom',time:530},
+			{text:'3355226',id:'bdid4a',type:'bottom',time:540},
+			{text:'3355226',id:'bdid5a',type:'bottom',time:550},
+			{text:'3355226',id:'bdid6a',type:'bottom',time:560},
+			{text:'3355226',id:'bdid7a',type:'bottom',time:570},//
+			{text:'3355226',id:'bdid2b',type:'bottom',time:920},
+			{text:'3355226',id:'bdid3b',type:'bottom',time:930},
+			{text:'3355226',id:'bdid4b',type:'bottom',time:940},
+			{text:'3355226',id:'bdid5b',type:'bottom',time:950},
+			{text:'3355226',id:'bdid6b',type:'bottom',time:960},
+			{text:'3355226',id:'bdid7b',type:'bottom',time:970},
+		],
+		normaldanmudata:[
+			//time是模拟弹幕出现时间
+			{text:'测试弹幕测试弹幕测试弹幕',id:'did1',type:'left',time:10},
+			{text:'3355226asdads',id:'did2',type:'left',time:20},
+			{text:'3355226sada',id:'did3',type:'left',time:30},
+			{text:'3355226asdsadsa',id:'did4',type:'left',time:40},
+			{text:'3355226sadsad',id:'did5',type:'left',time:50},
+			{text:'3355226asdsa',id:'did6',type:'left',time:60},
+			{text:'3355226asdsaadssad',id:'did7',type:'left',time:70},//
+			{text:'3355226asdsadsad',id:'did2a',type:'left',time:520},
+			{text:'3355226sadasdas',id:'did3a',type:'left',time:530},
+			{text:'3355226asdsad',id:'did4a',type:'left',time:540},
+			{text:'3355226adsasdad',id:'did5a',type:'left',time:550},
+			{text:'3355226asdasdadasdsa',id:'did6a',type:'left',time:560},
+			{text:'3355226asdsadasd',id:'did7a',type:'left',time:570},//
+			{text:'3355226sadassadasdasd',id:'did2b',type:'left',time:920},
+			{text:'3355226asdsadsad',id:'did3b',type:'left',time:930},
+			{text:'3355226asdasd',id:'did4b',type:'left',time:940},
+			{text:'3355226asdasdasdsa',id:'did5b',type:'left',time:950},
+			{text:'3355226sadsadsadsadasda',id:'did6b',type:'left',time:960},
+			{text:'3355226asdasdsadasda',id:'did7b',type:'left',time:970},
+		]
+	},
+	methods_ = {
+		//监听
+		listens:function(){
+			document.getElementById('app').style.visibility = 'visible'
+			window.addEventListener('resize',function(){
+				
+			})
+		},
+	},
 	mounted_ = function(){
-		this.danmuload()
+		this.listens()
 	},
 	vue = new Vue({
 		el:'#app',
 		created:created_,
+		components:components_,
 		data:datas,
 		methods:methods_,
 		mounted:mounted_
