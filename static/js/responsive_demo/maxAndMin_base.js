@@ -8,6 +8,7 @@ var danmuboxVue_created = function(){
 	},
 	danmuboxVue_data = {
 		num:0,
+		slidenum:0
 	},
 	danmuboxVue_methods = {
 		removeElement:function (_element){
@@ -23,7 +24,7 @@ var danmuboxVue_created = function(){
 		}*/
 		setdanmu:function(text,ids,type){//弹幕发射的逻辑
 			this.num = 0;//防止出现后面没有弹幕但却在中间发送的情况
-			var danmuwrap_ = document.getElementById('danmuwrap')
+			var danmuwrap_ = document.getElementById('app').children[0].children[0].children[1].children[0].children[0].children[0]//依次找到id：danmuwrap
 			//以25高的距离为基准
 			if(type=='left')
 			{
@@ -59,7 +60,7 @@ var danmuboxVue_created = function(){
 									dom.className = 'dans dan'+_this.num;
 									dom.style.top = (nums)*25+'px'
 									danmuwrap_.appendChild(dom)
-									dom.style.transition = 50500+'ms linear'
+									dom.style.transition = 65500+'ms linear'
 									dom.style.right = -dom.offsetWidth+'px'
 									_this.num = 0		
 									window['danmumove'+ids] = function(){
@@ -74,7 +75,7 @@ var danmuboxVue_created = function(){
 								dom.className = 'dans dan'+_this.num;
 								dom.style.top = (nums)*25+'px'
 								danmuwrap_.appendChild(dom)
-								dom.style.transition = 50500+'ms linear'
+								dom.style.transition = 65500+'ms linear'
 								dom.style.right = -dom.offsetWidth+'px'
 								_this.num = 0							
 								window['danmumove'+ids] = function(){
@@ -91,7 +92,7 @@ var danmuboxVue_created = function(){
 						dom.className = 'dans dan'+_this.num;
 						dom.style.top = (_this.num-1)*25+'px'
 						danmuwrap_.appendChild(dom)
-						dom.style.transition = 50500+'ms linear'
+						dom.style.transition = 65500+'ms linear'
 						dom.style.right = -dom.offsetWidth+'px'
 						_this.num = 0
 						window['danmumove'+ids] = function(){
@@ -160,10 +161,7 @@ var danmuboxVue_created = function(){
 			}
 		},
 		danmutophidden_:function(ids){
-			var _this = this;
-			setTimeout(function(){
-				_this.removeElement(document.getElementById(ids))
-			},5000)
+			document.getElementById(ids).style.animation = 'centerdanmudisplaynone 5s forwards'
 		},
 		danmumoving_:function(ids,textl){
 			var _this = this;
@@ -179,14 +177,37 @@ var danmuboxVue_created = function(){
 						this.removeElement(lengths2[i])
 					}
 				}				
+			}//
+			function getStyle(obj,styleName){
+			    if(obj.currentStyle){
+			        return obj.currentStyle[styleName];
+			    }else{
+			        return getComputedStyle(obj,null)[styleName];
+			    }
+			}
+			var lengths3 = document.querySelectorAll('.tdans')
+			if(lengths3.length!=0){
+				for(var i = 0;i<lengths3.length;i++){
+					if(getStyle(lengths3[i],'opacity') == 0){
+						this.removeElement(lengths3[i])
+					}
+				}				
+			}
+			var lengths4 = document.querySelectorAll('.bdans')
+			if(lengths4.length!=0){
+				for(var i = 0;i<lengths4.length;i++){
+					if(getStyle(lengths4[i],'opacity') == 0){
+						this.removeElement(lengths4[i])
+					}
+				}				
 			}
 			setTimeout(function(){
 				_this.cleardanmuinterval()
 			},300)
 		},
 		getdanmudata:function(){
-			var nums = 0
-			for(var i = 0;i<5000;i++){
+			var nums = 0,_this = this;
+			for(var i = 0;i<1000;i++){
 				nums++;
 				if((i+1)%2==0){
 					this.danmudatas.push({text:'惊了个巴子',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
@@ -194,23 +215,27 @@ var danmuboxVue_created = function(){
 					this.danmudatas.push({text:'惊了',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
 				}
 			};
-			this.danmuload()
+			setTimeout(function() {
+				_this.danmuload()
+				_this.cleardanmuinterval()			
+			}, 10);
 		},
 		danmuload:function(){//遍历数据并进行弹幕加载，模拟哪一时刻出现的弹幕，真正使用的时候得要修改这里的逻辑，把time作为视频的哪一个时间位置进行发射弹幕
-			var _this = this;
-			var texts = '',types = '',ids = '',times = ''
-			function m(texts2,types2,ids2,times2){
+			var _this = this,arrlength = this.danmudatas.length;
+			if(this.slidenum<arrlength){
+				this.slidenum++
 				setTimeout(function(){
-					_this.setdanmu(texts2,ids2,types2)//发送弹幕和弹幕加载
-				},times2)				
+					_this.setdanmu(_this.danmudatas[_this.slidenum-1].text,_this.danmudatas[_this.slidenum-1].id,_this.danmudatas[_this.slidenum-1].type)//发送弹幕和弹幕加载
+					_this.danmuload()
+				},10)
+			}else{
+				this.slidenum = 1
+				setTimeout(function(){
+					_this.setdanmu(_this.danmudatas[_this.slidenum-1].text,_this.danmudatas[_this.slidenum-1].id,_this.danmudatas[_this.slidenum-1].type)//发送弹幕和弹幕加载
+					_this.danmuload()
+				},10)
 			}
-			for(var i = 0;i<_this.danmudatas.length;i++){
-				texts = _this.danmudatas[i].text
-				types = _this.danmudatas[i].type
-				ids = _this.danmudatas[i].id
-				times = _this.danmudatas[i].time;
-				m(texts,types,ids,times)
-			}
+			
 		},
 		senddanmu:function(){
 			this.setdanmu('测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕','ids2'+new Date().getTime(),'left')
@@ -218,7 +243,6 @@ var danmuboxVue_created = function(){
 	},
 	danmuboxVue_mounted = function(){
 		this.getdanmudata()
-		this.cleardanmuinterval()
 	},
 	danmuboxVue = {
 		template:"#danmubox",
@@ -264,20 +288,21 @@ var danmuboxb_created = function(){
 		//danmu移动
 		getdanmu:function(num){
 			var _this = this;
+			var danmuwrap_ = document.getElementById('app').children[0].children[0].children[2].children[0].children[0].children[1]//依次找到id：danmuwrapb
 			if(num == 3){//3为即将追加的索引
-				document.querySelector('#danmuwrapb1').appendChild((function(){
+				danmuwrap_.children[0].appendChild((function(){
 					var dom = document.createElement('span');
 					dom.className = 'danmuitem1';
 					dom.innerHTML = _this.danmudatas[0].text
 					return dom;
 				})())
-				document.querySelector('#danmuwrapb2').appendChild((function(){
+				danmuwrap_.children[1].appendChild((function(){
 					var dom = document.createElement('span');
 					dom.className = 'danmuitem2';
 					dom.innerHTML = _this.danmudatas[1].text
 					return dom;
 				})())
-				document.querySelector('#danmuwrapb3').appendChild((function(){
+				danmuwrap_.children[2].appendChild((function(){
 					var dom = document.createElement('span');
 					dom.className = 'danmuitem3';
 					dom.innerHTML = _this.danmudatas[2].text
@@ -286,9 +311,12 @@ var danmuboxb_created = function(){
 				var n = num+1
 				this.getdanmu(n)
 			}else{
-				var doms1 = document.querySelectorAll('.danmuitem1')
-				var doms2 = document.querySelectorAll('.danmuitem2')
-				var doms3 = document.querySelectorAll('.danmuitem3')
+				var doms1wrap = danmuwrap_.children[0]//依次找到id：danmuwrapb1
+				var doms2wrap = danmuwrap_.children[1]//依次找到id：danmuwrapb2
+				var doms3wrap = danmuwrap_.children[2]//依次找到id：danmuwrapb3
+				var doms1 = danmuwrap_.children[0].children//依次找到id：danmuwrapb1所有子元素
+				var doms2 = danmuwrap_.children[1].children//依次找到id：danmuwrapb2所有子元素
+				var doms3 = danmuwrap_.children[2].children//依次找到id：danmuwrapb3所有子元素
 				var doms1l = 0
 				var doms2l = 0
 				var doms3l = 0
@@ -301,7 +329,7 @@ var danmuboxb_created = function(){
 				for(var i = 0;i<doms3.length;i++){
 					doms3l+=doms3[i].offsetWidth+18
 				}
-				var a=[{type:'1',num:doms1l},{type:'2',num:doms2l},{type:'3',num:doms3l}],t;
+				var a=[{type:'1',num:doms1l},{type:'2',num:doms2l},{type:'3',num:doms3l}],t='';
 				for(var i=0;i<a.length;i++){
 				  for(var j=0;j<a.length-1;j++){//-1
 					 if(a[j].num>a[j+1].num){//这个成立的时候，保存前面的为临时值，然后互换，前面的等于+1的，然后+1的那个等于临时的
@@ -311,7 +339,15 @@ var danmuboxb_created = function(){
 					 }
 				   }
 				}
-				document.querySelector('#danmuwrapb'+a[0].type).appendChild((function(){
+				var whichfirst = 0
+				if(a[0].type=='1'){
+					whichfirst = doms1wrap
+				}else if(a[0].type=='2'){
+					whichfirst = doms2wrap
+				}else{
+					whichfirst = doms3wrap
+				}
+				whichfirst.appendChild((function(){
 					var dom = document.createElement('span');
 					dom.className = 'danmuitem'+a[0].type;
 					dom.innerHTML = _this.danmudatas[num].text
@@ -326,11 +362,12 @@ var danmuboxb_created = function(){
 			}
 		},
 		danmumoveing:function(){
-			var n = document.getElementById('danmuwrapb').offsetLeft<0?-document.getElementById('danmuwrapb').offsetLeft:document.getElementById('danmuwrapb').offsetLeft
-			if(n>document.getElementById('danmuwrapb').offsetWidth&&document.getElementById('danmuwrapb').offsetLeft<0){
+			var danmuwrap_ = document.getElementById('app').children[0].children[0].children[2].children[0].children[0].children[1]//依次找到id：danmuwrapb
+			var n = danmuwrap_.offsetLeft<0?-danmuwrap_.offsetLeft:danmuwrap_.offsetLeft
+			if(n>danmuwrap_.offsetWidth&&danmuwrap_.offsetLeft<0){
 				return;
 			}
-			document.getElementById('danmuwrapb').style.left = document.getElementById('danmuwrapb').offsetLeft - 1 + 'px'
+			danmuwrap_.style.left = danmuwrap_.offsetLeft - 1 + 'px'
 			setTimeout(this.danmumoveing,10)
 		}
 	},
