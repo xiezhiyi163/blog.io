@@ -8,16 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="static/css/responsicedemo/maxAndMin_base.css"/>
 		<link rel="stylesheet" type="text/css" href="static/css/responsicedemo/maxAndMin_mediabase.css"/>
 	</head>
-	<!-- 
-		@container
-		{
-			假设：180一个item宽
-			一个广告：240
-			间隔：10
-			就是：4*190+240
-			处理media的时候：一个个item地加就行
-		}
-	 -->
 	<body>
 		<div style="position: relative;height: 0;overflow: hidden;">
 			<template id="danmubox">
@@ -65,7 +55,7 @@
 								<p>热点评论</p>							
 							</div>
 						</div>
-						<div id="danmuwrapb" :style="{left:winwidth+'px'}">
+						<div id="danmuwrapb" :style="{left:domwidth+'px'}">
 							<p id="danmuwrapb1" class="danmuwrapb">
 							</p>
 							<p id="danmuwrapb2" class="danmuwrapb">
@@ -78,19 +68,29 @@
 			</template>
 		</div>
 		<div id="app" style="visibility: hidden;">
-			<div id="danmusystem">
-				<div class="danmutype">
-					<p @click="danmutype = 'bilibili'" :class="danmutype=='bilibili'?'active':''">video播放器弹幕系统</p>
-					<p @click="danmutype = 'normal'" :class="danmutype=='normal'?'active':''">热点评论弹幕系统</p>
-				</div>
-				<div :class="danmutype=='bilibili'?'':'danmutypehidden'">
-					<danmubox :danmudatas="bilibilidanmudatas"></danmubox>				
-				</div>
-				<div :class="danmutype=='normal'?'':'danmutypehidden'">
-					<danmuboxb :danmudatas="normaldanmudata"></danmuboxb>
-				</div>				
-			</div>
 			<div id="container">
+				<!-- 
+					@container
+					{
+						假设：180一个item宽
+						一个广告：240
+						间隔：10
+						就是：4*190+240
+						处理media的时候：一个个item地加就行
+					}
+				 -->
+				<div id="danmusystem">
+					<div class="danmutype">
+						<p @click="danmutype = 'bilibili'" :class="danmutype=='bilibili'?'active':''">video播放器弹幕系统</p>
+						<p @click="danmutype = 'normal'" :class="danmutype=='normal'?'active':''">热点评论弹幕系统</p>
+					</div>
+					<div :class="danmutype=='bilibili'?'':'danmutypehidden'">
+						<danmubox :danmudatas="bilibilidanmudatas"></danmubox>				
+					</div>
+					<div :class="danmutype=='normal'?'':'danmutypehidden'">
+						<danmuboxb :danmudatas="normaldanmudata"></danmuboxb>
+					</div>				
+				</div>
 				<p style="margin: 10px 0;height: 100px;background-color: #ccc;"></p>
 				<div>
 					<div class="mainslider"></div>

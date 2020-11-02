@@ -242,7 +242,8 @@ var danmuboxb_created = function(){
 		}
 	},
 	danmuboxb_data = {
-		winwidth:''
+		winwidth:'',
+		domwidth:'',
 	},
 	danmuboxb_methods = {
 		getwidthandheight:function(type){
@@ -335,6 +336,7 @@ var danmuboxb_created = function(){
 	},
 	danmuboxb_mounted = function(){
 		this.winwidth = this.getwidthandheight('w')
+		this.domwidth = document.getElementById('danmuboxb2').offsetWidth
 		this.getdanmu(3)
 	},
 	danmuboxbVue = {
