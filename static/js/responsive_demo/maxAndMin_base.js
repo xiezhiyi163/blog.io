@@ -227,13 +227,13 @@ var danmuboxVue_created = function(){
 				setTimeout(function(){
 					_this.setdanmu(_this.danmudatas[_this.slidenum-1].text,_this.danmudatas[_this.slidenum-1].id,_this.danmudatas[_this.slidenum-1].type)//发送弹幕和弹幕加载
 					_this.danmuload()
-				},10)
+				},20)
 			}else{
 				this.slidenum = 1
 				setTimeout(function(){
 					_this.setdanmu(_this.danmudatas[_this.slidenum-1].text,_this.danmudatas[_this.slidenum-1].id,_this.danmudatas[_this.slidenum-1].type)//发送弹幕和弹幕加载
 					_this.danmuload()
-				},10)
+				},20)
 			}
 			
 		},
