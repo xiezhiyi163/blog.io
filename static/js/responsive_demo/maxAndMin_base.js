@@ -33,7 +33,7 @@ var danmuboxVue_created = function(){
 					dom.innerText = text;
 					if(document.querySelectorAll('.dans').length!=0){
 						//设置要添加的class索引
-						var h = (document.getElementById('danmuwrap').offsetHeight-document.getElementById('danmuwrap').offsetHeight%25)/25
+						var h = (document.getElementById('danmuwrap').offsetHeight-document.getElementById('danmuwrap').offsetHeight%30)/30
 						var nums = 0
 						for(var i = 0;i<h;i++){
 							_this.num = i+1
@@ -58,7 +58,7 @@ var danmuboxVue_created = function(){
 									dom.id = ids;
 									dom.style.transition = 0+'ms linear'
 									dom.className = 'dans dan'+_this.num;
-									dom.style.top = (nums)*25+'px'
+									dom.style.top = (nums)*30+'px'
 									danmuwrap_.appendChild(dom)
 									dom.style.transition = 65500+'ms linear'
 									dom.style.right = -dom.offsetWidth+'px'
@@ -73,7 +73,7 @@ var danmuboxVue_created = function(){
 								dom.id = ids;
 								dom.style.transition = 0+'ms linear'
 								dom.className = 'dans dan'+_this.num;
-								dom.style.top = (nums)*25+'px'
+								dom.style.top = (nums)*30+'px'
 								danmuwrap_.appendChild(dom)
 								dom.style.transition = 65500+'ms linear'
 								dom.style.right = -dom.offsetWidth+'px'
@@ -90,7 +90,7 @@ var danmuboxVue_created = function(){
 						dom.id = ids;
 						dom.style.transition = 0+'ms linear'
 						dom.className = 'dans dan'+_this.num;
-						dom.style.top = (_this.num-1)*25+'px'
+						dom.style.top = (_this.num-1)*30+'px'
 						danmuwrap_.appendChild(dom)
 						dom.style.transition = 65500+'ms linear'
 						dom.style.right = -dom.offsetWidth+'px'
@@ -108,7 +108,7 @@ var danmuboxVue_created = function(){
 					var dom1 = document.createElement('p');
 					dom1.innerText = text;
 					if(document.querySelectorAll(type=='top'?'.tdans':'.bdans').length!=0){
-						var h = ((document.getElementById('danmuwrap').offsetHeight-document.getElementById('danmuwrap').offsetHeight%25)/25)/2
+						var h = ((document.getElementById('danmuwrap').offsetHeight-document.getElementById('danmuwrap').offsetHeight%30)/30)/2
 						var nums = 0
 						for(var i = 0;i<h;i++){
 							_this.num = i+1
@@ -126,9 +126,9 @@ var danmuboxVue_created = function(){
 								dom1.id = ids;
 								dom1.className = (type=='top'?'tdans tdan':'bdans bdan')+nums;
 								if(type=='top'){
-									dom1.style.top = (nums-1)*25+'px'								
+									dom1.style.top = (nums-1)*30+'px'								
 								}else{
-									dom1.style.bottom = (nums-1)*25+'px'
+									dom1.style.bottom = (nums-1)*30+'px'
 								}
 								dom1.style.textAlign = 'center'
 								danmuwrap_.appendChild(dom1);
@@ -145,9 +145,9 @@ var danmuboxVue_created = function(){
 						dom1.id = ids;
 						dom1.className = (type=='top'?'tdans tdan':'bdans bdan')+_this.num;
 						if(type=='top'){
-							dom1.style.top = (_this.num-1)*25+'px'								
+							dom1.style.top = (_this.num-1)*30+'px'								
 						}else{
-							dom1.style.bottom = (_this.num-1)*25+'px'
+							dom1.style.bottom = (_this.num-1)*30+'px'
 						}
 						dom1.style.textAlign = 'center'
 						danmuwrap_.appendChild(dom1);
@@ -210,9 +210,9 @@ var danmuboxVue_created = function(){
 			for(var i = 0;i<1000;i++){
 				nums++;
 				if((i+1)%2==0){
-					this.danmudatas.push({text:'惊了个巴子',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
+					this.danmudatas.push({text:'技术日常',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
 				}else{
-					this.danmudatas.push({text:'惊了',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
+					this.danmudatas.push({text:'搬砖',id:('did'+new Date().getTime()+nums),type:'left',time:nums})					
 				}
 			};
 			setTimeout(function() {
@@ -362,9 +362,12 @@ var danmuboxb_created = function(){
 			}
 		},
 		danmumoveing:function(){
+			var danmuwrap_box = document.getElementById('app').children[0].children[0].children[2].children[0].children[0]//依次找到id：danmuboxb2
 			var danmuwrap_ = document.getElementById('app').children[0].children[0].children[2].children[0].children[0].children[1]//依次找到id：danmuwrapb
 			var n = danmuwrap_.offsetLeft<0?-danmuwrap_.offsetLeft:danmuwrap_.offsetLeft
 			if(n>danmuwrap_.offsetWidth&&danmuwrap_.offsetLeft<0){
+				danmuwrap_.style.left = danmuwrap_box.offsetWidth + 'px'
+				setTimeout(this.danmumoveing,10)
 				return;
 			}
 			danmuwrap_.style.left = danmuwrap_.offsetLeft - 1 + 'px'
