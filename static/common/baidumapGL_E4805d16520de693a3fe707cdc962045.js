@@ -1,0 +1,1 @@
+(function(){ window.BMapGL_loadScriptTime = (new Date).getTime(); document.write('<script type="text/javascript" src="http://api.map.baidu.com/getscript?type=webgl&v=1.0&ak=E4805d16520de693a3fe707cdc962045&services=&t=20201104222554"></script>');document.write('<link rel="stylesheet" type="text/css" href="http://api.map.baidu.com/res/webgl/10/bmap.css"/>');})();

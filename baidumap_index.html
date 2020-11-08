@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title></title>
+		<link rel="stylesheet" href="static/css/pcss.css">
+		<link rel="stylesheet" href="static/css/baidumap_demo/baidumap_index_base.css">
+		<link component rel="stylesheet" type="text/css" href="static/css/baidumap_demo/baidumap_index_normal_base.css"/>
+		<link component rel="stylesheet" type="text/css" href="static/css/baidumap_demo/baidumap_index_loca_base.css"/>
+		<link component rel="stylesheet" type="text/css" href="static/css/baidumap_demo/baidumap_index_lushu_base.css"/>
+		<link component rel="stylesheet" type="text/css" href="static/css/baidumap_demo/baidumap_index_draw_base.css"/>
+	</head>
+	<body>
+		<div id="app" style="visibility: hidden;">
+			<div style="min-width: 800px;">
+				<div class="topwrap">
+					常用的百度地图API
+				</div>
+				<div>
+					<div class="left_cont">
+						<div class="left">
+							<div class="item" v-for="(v,i) in itemlist" @click="thepath = v.path;patharrForView[i] = v.path;" :style="{backgroundColor:thepath == v.path?'#ebca93':''}">
+								{{v.title}}
+							</div>
+						</div>
+						<div class="cont" :style="{height:winheight-60+'px'}">
+							<div :style="{position:'relative',overflow:v == thepath?'':'hidden',height:v == thepath?'':'0'}" v-for="(v,i) in patharrForView">
+								<div :is="v"></div>
+							</div>							
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<!-- 白名单映射baidumap.com 用的3.0版本的jsAPI，百度开放平台申请ak密钥然后放到下面的js链接的参数那里才可以成功调用,NWWXGw4vyvbKO2eG0CI5AR2rE37gaLfX是ak密钥，已经写死在这个js文件里面 -->
+		<script src="static/common/baidumap_E4805d16520de693a3fe707cdc962045.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/baidumapGL_E4805d16520de693a3fe707cdc962045.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script component src="static/js/baidumap_demo/baidumap_index_normal_base.js" type="text/javascript" charset="utf-8"></script>
+		<script component src="static/js/baidumap_demo/baidumap_index_loca_base.js" type="text/javascript" charset="utf-8"></script>
+		<script component src="static/js/baidumap_demo/baidumap_index_lushu_base.js" type="text/javascript" charset="utf-8"></script>
+		<script component src="static/js/baidumap_demo/baidumap_index_draw_base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/baidumap_demo/baidumap_index_base.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
