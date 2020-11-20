@@ -1,453 +1,119 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-		<link rel="stylesheet" type="text/css" href="static/common/schedule带日程/new_file.css"/>
 		<link rel="stylesheet" type="text/css" href="static/css/pcss.css"/>
-		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/common/font-awesome-4.7.0/图标库 – Font Awesome 中文网_files/font-awesome.min.css"/>
+		<title></title>
 		<style type="text/css">
-			/* *pagecss */
-			html,body{
-				font-family: "arial";
+			html,body {
 				position: relative;
 				overflow: hidden;
 			}
-			.settable{
-				display: table;
-				width: 100%;
-				min-width: 768px;
+			body {
+				background-color: #333;
 			}
-			.settable:after,#rights:after{
-				content: "";
-				display: block;
-				clear: both;
-			}
-			.settableCell{
-				display: table-cell;
-			}
-			.settableCellL{
-				display: table-cell;
-				float: left;
-			}
-			.settableCellR{
-				display: table-cell;
-				float: right;
-			}
-			/* *lefts */
-			#lefts {
-				width: 220px;
-				background-color: #274d93;
-				/* box-shadow: 0 0 20px 20px #888; */
+			#wrap {
 				position: relative;
-				z-index: 1;
-			}
-			/* avatar */
-			.avatar {
-				width: 80px;
-				height: 80px;
-				background-color: white;
-				margin: auto;
-				border-radius: 50%;
-			}
-			.avatarName{
-				text-align: center;
-				padding:20px 30px 30px;
-				color: white;
-				font-weight: bolder;
-			}
-			/* 日历 */
-			
-			#schedule-box{
-				width: 100%;
+				background: url('static/imgs/1.png') no-repeat center;
+				background-size: cover;
+				min-width: 1024px;
+				min-height: 768px;
 				margin: 0 auto;
-				font-size: 13px;
-			}
-			.schedule-hd{
-				display: flex;
-				justify-content: space-between;
-				padding: 0px 15px 10px;
-			}
-			.today{
-				flex: 1;
-				text-align: center;
-			}
-			.ul-box{
 				overflow: hidden;
 			}
-			.ul-box > li{
-				float: left;
-				width: 14.28%;
-				text-align: center;
-				padding: 0px 0;
-			}
-			.other-month{
-				color: #999999;
-			}
-			.current-month{
-				color: #333333;
-			}
-			.today-style{
-				border-radius: 50%;
-				background-color: #58d321;
-			}
-			.arrow{
-				cursor: pointer;
-			}
-			.dayStyle{
-				display: inline-block;
-				width: 26px;
-				height: 26px;
-				border-radius: 50%;
-				text-align: center;
-				line-height: 26px;
-				cursor: pointer;
-				color: white;
-			}
-			.current-month > .dayStyle:hover{
-				width: 26px;
-				height: 26px;
-				line-height: 26px;
-				background: #00BDFF;
-				color: #ffffff;
-			}
-			.today-flag{
-				width: 26px;
-				height: 26px;
-				line-height: 26px;
-				background: #00C2B1;
-				color: #fff;
-			}
-			.boxshaw{
-				-box-shadow: 2px 2px 15px 2px #e3e3e3;
-				color: white;
-			}
-			.selected-style {
-				width: 26px;
-				height: 26px;
-				line-height: 26px;
-				background: #00BDFF;
-				color: #ffffff;
-			}
-			#h3Ele{
-				text-align: center;
-				padding: 10px;
-			}
-			/* *rights */
-			#rights {
-				vertical-align: top;
-				width: 100%;
-			}
-			#righttop{/*里面的内容强制不换行导致该容器在table cell的情况下无法自适应调整margin和padding*/
-				height: 60px;
-				background-color: #00BDFF;
-				/* box-shadow: 20px 0 20px 10px #888; */
-				position: relative;
-				z-index: 1;
-			}
-			#mobmenuicon{
+			#wrap p {
 				position: absolute;
-				top: 0;
-				left: 0;
-				width: 50px;
-				height: 60px;
-				background-color: coral;
-				line-height: 60px;
-				text-align: center;
+				font-size: 32px;
 				color: white;
-				font-size: 30px;
+				visibility: hidden;
+				width: 190px;
 			}
-			#rightcont{
-				position: relative;
-				background-color: white;
+			#desk {
+				right: 100px;
 			}
-			/* left滑入悬浮 */
-			#mobleftfixed {
-				position: fixed;
-				left: 0;
-				top: 0;
-				width: 0px;
-				background-color: #006699;
-				z-index: 2;
-				overflow: hidden;
-				transition: 300ms;
+			#blog {
+				right: 180px;
 			}
 		</style>
 	</head>
 	<body>
-		<div id="app" style="visibility: hidden;opacity: 0;transition: 0;">
-			<div class="settable">
-				<!-- *左 -->
-				<div class="settableCellL" id="lefts">
-					<!-- 头像 -->
-					<div style="background-color: #68276c;padding-top: 30px;margin-bottom: 30px;">
-						<div>
-							<div class="avatar"></div>
-						</div>
-						<div class="avatarName">
-							<i class="fa fa-user" style="margin-right: 10px;"></i>
-							xiezhiyi163
-						</div>						
-					</div>
-					<!-- 日历 -->
-					<div style="margin: 0 15px;">
-						<div id='schedule-box' class="boxshaw"></div>
-					</div>
-					<div style="padding: 30px 20px 0;color: white;font-size: 14px;word-break: break-all;">欢迎到访，这里是xiezhiyi163的专属定制博客=V=，博主已从事前端开发有{{datenum+3}}年，已积累了大量的前端包括vue和react的开发经验和手机端适配经验</div>
-				</div>
-				<!-- *右 -->
-				<div class="settableCell" id="rights">
-					<div id="righttop">
-						<div id="mobmenuicon" @click="setfixwidth"><i class="fa fa-reorder"></i></div>
-						<div id="righttopIn" style="margin: 0px 30px;height:50px;border-bottom: 0px solid white;color: white;position: relative;">
-							<span @click="navleft()" id="rightnavleft" style="position: absolute;left: -20px;top: 22px;"><</span>
-							<div id="rightnav" style="padding-top: 20px;position: relative;overflow: hidden;min-width: 428px;transition: 200,s;">
-								<div id="rightnavin" style="white-space: nowrap;display: inline-block;position: relative;">
-									<span @click="linktype = '2';flink = v.link;" v-for="(v,i) in navlist" style="margin-right: 30px;cursor: pointer;" :style="flink == v.link&&linktype=='2'?'color:#1a33e1':''">
-										<i class="fa fa-file" style="margin-right: 10px;"></i>{{v.v}}
-									</span>
-								</div>
-							</div>
-							<span @click="navright()" id="rightnavright" style="position: absolute;right: 40px;top: 22px;">></span>
-						</div>
-					</div>
-					<div id="toOs" style="float: right;width: 60px;height: 60px;background-color: coral;margin-top: -60px;line-height: 65px;font-size: 30px;color: white;text-align: center;position: relative;z-index: 2;" title="桌面系统演示">
-						<div id="toOsin" style="position: absolute;width: 60px;height: 60px;top: 0;left: 0;" @click="setoslink('https:\/\/xiezhiyi163.github.io\/webos.github.io\/')"></div>
-						<i class="fa fa-laptop"></i>
-					</div>
-					<div id="rightcont">
-						<div style="width: 100%;overflow: hidden;" :style="linktype == '2'?'height:100%':'height:0'">
-							<iframe :src="flink" width="100%" height="100%" frameborder="0"></iframe>
-						</div>						
-						<div style="width: 100%;overflow: hidden;position: relative;z-index: 2;" :style="linktype == '1'?'height:100%':'height:0'">
-							<iframe :src="flink2" width="100%" height="100%" frameborder="0"></iframe>
-						</div>						
-					</div>
-				</div>
-			</div>
-			<!-- left滑入悬浮 -->
-			<div id="mobleftfixed">
-				<i style="position: absolute;left: 180px;top:0;font-size: 30px;padding:10px 10px 0 0;color: white;" class="fa fa-close" @click="closefix"></i>
-				<div class="settableCellL" style="width: 220px;">
-					<!-- 头像 -->
-					<div style="background-color: #68276c;padding-top: 30px;margin-bottom: 30px;">
-						<div>
-							<div class="avatar"></div>
-						</div>
-						<div class="avatarName">
-							<i class="fa fa-user" style="margin-right: 10px;"></i>
-							xiezhiyi163
-						</div>						
-					</div>
-					<!-- 日历 -->
-					<div style="margin: 0 15px;">
-						<div id='schedule-box2' class="boxshaw"></div>
-					</div>
-					<div style="padding: 30px 20px 0;color: white;font-size: 14px;word-break: break-all;">欢迎到访，这里是xiezhiyi163的专属定制博客=V=，博主已从事前端开发有{{datenum+3}}年，已积累了大量的前端包括vue和react的开发经验和手机端适配经验</div>
-				</div>
-			</div>
+		<script src="static/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<div id="wrap">
+			<p id="desk" onclick="deskopen()"><i class="fa fa-bars"></i>&nbsp;&nbsp;&nbsp;云端展台</p>
+			<p id="blog" onclick="blogopen()"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;个人博客</p>
 		</div>
-		<script src="static/common/schedule带日程/schedule.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/common/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/common/layer-v3.1.1/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var datas = {
-					datenum:'',
-					flink:'index_常见的移动端布局形式.html',
-					flink2:'',
-					linktype:'2',
-					moreleft:340,//340+50,主要是用这个判断移动端的dom大小操作
-					navlist:[
-						{v:'w3c标准难点记录_监听的理解',link:'index_w3c标准难点记录_监听的理解.html'},
-						{v:'常见的移动端布局形式',link:'index_常见的移动端布局形式.html'},
-						{v:'常见常用js思考方式',link:'index_js常见常用知识点.html'},
-						{v:'Vue的理解',link:'index_vue.html'},
-						{v:'React的理解',link:'index_react.html'},
-						{v:'常用响应式总结',link:'index_常用响应式总结.html'},
-						{v:'微信登录流程整理',link:'index_微信登录流程整理.html'},
-					]
-				},
-				methods_ = {
-					setfixwidth:function(){
-						document.getElementById('mobleftfixed').style.width = '220px'
-					},
-					closefix:function(){
-						document.getElementById('mobleftfixed').style.width = '0px'
-					},
-					ifpc:function(){//拿到设备标识
-						var UA = navigator.userAgent
-						if(UA.indexOf('Windows') != -1 || UA.indexOf('Macintosh') != -1) {
-							return 'win'
-						} else {
-							return 'mob'
-						}
-					},
-					setrightTopLeft:function(){
-						//通过判断设备,来设置righttopin的left值和要减去的数值
-						var rtl = document.getElementById('righttopIn')
-						var left = document.getElementById('lefts')
-						var mobmenuicon = document.getElementById('mobmenuicon')
-						if(this.ifpc()=="win"){
-							left.style.display = 'block'//操作左边
-							this.moreleft = 340//设置减去的值
-							rtl.style.left = '0px'//计算位移
-							rtl.style.marginRight = "30px"//计算右边距离
-							//判断是否显示移动端按钮
-							mobmenuicon.style.display = 'none'
-						}else{
-							left.style.display = 'none'//操作左边
-							this.moreleft = 390-220//设置减去的值
-							rtl.style.left = '50px'//计算位移
-							rtl.style.marginRight = "80px"//30+50//计算右边距离
-							//判断是否显示移动端按钮
-							mobmenuicon.style.display = 'block'
-						}
-					},
-					//nav左右点击切换
-					navins:function(){
-						var idrightnav = document.getElementById('rightnav'),
-							idrightnavin = document.getElementById('rightnavin');
-						if(idrightnavin.offsetLeft>0){
-							idrightnavin.style.left = 0;
-							return;
-						}
-						if(idrightnavin.offsetLeft<0&&idrightnavin.offsetWidth+idrightnavin.offsetLeft<idrightnav.offsetWidth){
-							idrightnavin.style.left = -(idrightnavin.offsetWidth-idrightnav.offsetWidth)+'px';
-						}
-					},
-					navleft:function(){
-						var idrightnavin = document.getElementById('rightnavin');
-						idrightnavin.style.left = (idrightnavin.offsetLeft + 100) + 'px'
-						this.navins()
-					},
-					navright:function(){
-						var idrightnavin = document.getElementById('rightnavin');
-						idrightnavin.style.left = (idrightnavin.offsetLeft - 100) + 'px'
-						this.navins()
-					},
-					setoslink:function(link){
-						this.linktype = '1';
-						if(this.flink2 != link){
-							this.flink2 = link
-						}						
-					},
-					setColor:function(){
-						document.getElementById('toOsin').onmouseover = function(){
-							document.getElementById('toOs').style.backgroundColor = '#274d93'
-						}
-						document.getElementById('toOsin').onmouseout = function(){
-							document.getElementById('toOs').style.backgroundColor = 'coral'
-						}
-					},
-					//时间长度获取
-					setdatenum:function(){
-						var ld = new Date('2017-1-1').getYear()
-						var d = new Date().getYear()
-						this.datenum = d-ld
-					},
-					// 日历初始化
-					scheduleinit:function(dom){
-						var mySchedule = new Schedule({
-								el: dom,
-								//date: '2018-9-20',
-								clickCb: function (y,m,d) {
-						//			document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
-								},
-								nextMonthCb: function (y,m,d) {
-						//			document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
-								},
-								nextYeayCb: function (y,m,d) {
-						//			document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
-								},
-								prevMonthCb: function (y,m,d) {
-						//			document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
-								},
-								prevYearCb: function (y,m,d) {
-						//			document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
-								}
-							});
-					},
-					//*监听
-					getwidthandheight:function(type){
-						if(type == 'w'){
-							var ww = window.innerWidth,
-								ddw = document.documentElement.clientWidth,
-								dbw = document.body.clientWidth,
-								tw = ww?ww:ddw?ddw:dbw;
-							return tw							
-						}else{
-							var wh = window.innerHeight,
-								ddc = document.documentElement.clientHeight,
-								dbc = document.body.clientHeight,
-								th = wh?wh:ddc?ddc:dbc;
-							return th							
-						}
-					},
-					navleftandrightset:function(){
-						this.navins()
-					},
-					setwidth:function(){
-						if(this.ifpc() == 'win'){
-							document.querySelector('.settable').style.minWidth = '768px'
-						}else{
-							document.querySelector('#righttop').style.width = this.getwidthandheight('w')+'px'
-							document.querySelector('#rightnav').style.minWidth = 150+'px'
-							document.querySelector('.settable').style.minWidth = '0px'
-						}
-						var idrightnav = document.getElementById('rightnav'),
-							idrightnavin = document.getElementById('rightnavin');
-						idrightnav.style.width = this.getwidthandheight('w')-this.moreleft + 'px'
-						if(idrightnav.offsetWidth<idrightnavin.offsetWidth){
-							document.getElementById('rightnavleft').style.display = 'block'
-							document.getElementById('rightnavright').style.display = 'block'
-						}else{
-							document.getElementById('rightnavleft').style.display = 'none'
-							document.getElementById('rightnavright').style.display = 'none'
-						}
-					},
-					setheight:function(){
-						document.getElementById('lefts').style.height = this.getwidthandheight('h') + 'px'
-						document.getElementById('rights').style.height = this.getwidthandheight('h') + 'px'
-						document.getElementById('rightcont').style.height = this.getwidthandheight('h')-60 + 'px'
-					},
-					setfixedheight:function(){
-						document.getElementById('mobleftfixed').style.height = this.getwidthandheight('h')+'px'
-					},
-					listens:function(){
-						var _this = this
-						this.setwidth()
-						this.setheight()
-						this.navleftandrightset()
-						this.setfixedheight()
-						window.addEventListener('resize',function(){
-							_this.setwidth()
-							_this.setheight()
-							_this.navleftandrightset()
-							_this.setfixedheight()
-						})
-					}
-				},
-				vue = new Vue({
-					el:'#app',
-					data:datas,
-					methods:methods_,
-					mounted:function() {
-						document.getElementById('app').style.cssText = 'visibility:visible;transition:2000ms;opacity:1;'
-						this.setrightTopLeft()
-						this.setdatenum()
-						this.scheduleinit('#schedule-box')
-						this.scheduleinit('#schedule-box2')
-						this.setColor()
-						this.listens()
-					}
+			var getwidthandheight = function(type){
+				if(type == 'w'){
+					var ddw = document.documentElement.clientWidth,
+						dbw = document.body.clientWidth,
+						tw = ddw?ddw:dbw;
+					return tw							
+				}else{
+					var ddc = document.documentElement.clientHeight,
+						dbc = document.body.clientHeight,
+						th = ddc?ddc:dbc;
+					return th							
+				}
+			}
+			var setheight = function(){
+				document.getElementById('wrap').style.height = getwidthandheight('h') + 'px'
+				document.getElementById('wrap').style.maxHeight = getwidthandheight('h') + 'px'
+				document.getElementById('wrap').style.maxWidth = document.getElementById('wrap').offsetHeight*14/8 + 'px'
+				document.getElementById('desk').style.top =  getwidthandheight('h')*0.4 + 'px'
+				document.getElementById('blog').style.top =  getwidthandheight('h')*0.5 + 'px'
+			}
+			var deskopen = function(){
+				window.l = layer.open({
+					type: 2,
+					content:'https://xiezhiyi163.github.io/webos.github.io/',
+					maxmin: true
 				})
-				
-				//原型和原型链test
-				var m = function(){}
-				console.log(m.prototype)
-				console.log(m.prototype.__proto__)
-				console.log(m.prototype.__proto__.__proto__)
-				console.log(m.__proto__.__proto__.__proto__)
+				layer.full(l)
+				//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+				//parent.layer.close(index); //再执行关闭  
+			}
+			var blogopen = function(){
+				window.l = layer.open({
+					type: 2,
+					content:'home.html',
+					maxmin: true
+				})
+				layer.full(l)
+				//var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+				//parent.layer.close(index); //再执行关闭  
+			}
+			var _full = function(){
+				if(window.l){
+					layer.style(window.l, {
+					  top: 0,
+					  left: 0,
+					  width: getwidthandheight('w'),
+					  height: getwidthandheight('h')
+					}, true);					
+				}
+			 }
+			var setright = function(){
+				document.getElementById('desk').style.right = document.getElementById('desk').style.right.split('px')[0]-document.getElementById('wrap').offsetWidth + 'px'
+				document.getElementById('blog').style.right = document.getElementById('blog').style.right.split('px')[0]+document.getElementById('wrap').offsetWidth + 'px'
+				$('#wrap p').css({visibility:'visible'})
+				setTimeout(function(){
+					$('#desk').animate({right:100},200)
+					$('#blog').animate({right:180},200)
+				},1000)
+			}
+			var listens = function(){
+				setheight()
+				_full()
+				window.addEventListener('resize',function(){
+					setheight()
+					_full()
+				})
+			}
+			listens()
+			setright()
 		</script>
 	</body>
 </html>

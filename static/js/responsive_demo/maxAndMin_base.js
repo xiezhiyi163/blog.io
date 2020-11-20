@@ -31,6 +31,29 @@ var danmuboxVue_created = function(){
 				(function(_this){
 					var dom = document.createElement('span');
 					dom.innerText = text;
+					function fn(idsv,num){//公共方法
+						if(document.getElementById(idsv)){
+							return;
+						}
+						dom.id = idsv;
+						dom.style.transition = 0+'ms linear'
+						dom.className = 'dans dan'+_this.num;
+						dom.style.top = (num)*30+'px'
+						danmuwrap_.appendChild(dom)
+						dom.style.left = document.getElementById('danmuwrap').offsetWidth+'px'
+						var speed = ''//算出移动速度
+						if((text.length-text.length%6)/6<=0){
+							speed = 1000
+						}else{
+							speed = (text.length-text.length%6)/6*1000
+						}
+						dom.style.transition = ((95500-speed)<60000?60000:(95500-speed))+'ms linear'
+						_this.num = 0
+						window['danmumove'+idsv] = function(){
+							_this.danmumoving_(idsv,text.length)
+						}
+						window['danmumove'+idsv]()		
+					}
 					if(document.querySelectorAll('.dans').length!=0){
 						//设置要添加的class索引
 						var h = (document.getElementById('danmuwrap').offsetHeight-document.getElementById('danmuwrap').offsetHeight%30)/30
@@ -55,50 +78,17 @@ var danmuboxVue_created = function(){
 							var lengths2 = document.querySelectorAll('.dan'+thenum)
 							if(lengths2[lengths2.length-1]){
 								if(lengths2[lengths2.length-1].offsetLeft < danmuwrap_.offsetWidth-lengths2[lengths2.length-1].offsetWidth){
-									dom.id = ids;
-									dom.style.transition = 0+'ms linear'
-									dom.className = 'dans dan'+_this.num;
-									dom.style.top = (nums)*30+'px'
-									danmuwrap_.appendChild(dom)
-									dom.style.transition = 65500+'ms linear'
-									dom.style.right = -dom.offsetWidth+'px'
-									_this.num = 0		
-									window['danmumove'+ids] = function(){
-										_this.danmumoving_(ids,text.length)
-									}
-									window['danmumove'+ids]()						
+									fn(ids,nums)		
 									break;
 								}					
 							}else{
-								dom.id = ids;
-								dom.style.transition = 0+'ms linear'
-								dom.className = 'dans dan'+_this.num;
-								dom.style.top = (nums)*30+'px'
-								danmuwrap_.appendChild(dom)
-								dom.style.transition = 65500+'ms linear'
-								dom.style.right = -dom.offsetWidth+'px'
-								_this.num = 0							
-								window['danmumove'+ids] = function(){
-									_this.danmumoving_(ids,text.length)
-								}
-								window['danmumove'+ids]()						
+								fn(ids,nums)						
 								break;
 							}
 						}
 					}else{
 						_this.num++;
-						dom.id = ids;
-						dom.style.transition = 0+'ms linear'
-						dom.className = 'dans dan'+_this.num;
-						dom.style.top = (_this.num-1)*30+'px'
-						danmuwrap_.appendChild(dom)
-						dom.style.transition = 65500+'ms linear'
-						dom.style.right = -dom.offsetWidth+'px'
-						_this.num = 0
-						window['danmumove'+ids] = function(){
-							_this.danmumoving_(ids,text.length)
-						}
-						window['danmumove'+ids]()						
+						fn(ids,_this.num-1)						
 					}
 				})(this)
 			}
@@ -165,8 +155,8 @@ var danmuboxVue_created = function(){
 		},
 		danmumoving_:function(ids,textl){
 			var _this = this;
-			if(Number(document.getElementById(ids).style.right.split('px')[0]) > document.getElementById('danmuwrap').offsetWidth){}
-			document.getElementById(ids).style.right = 18000 + 'px'
+			if(Number(document.getElementById(ids).style.left.split('px')[0]) < -document.getElementById(ids).offsetWidth){}
+			document.getElementById(ids).style.left = -18000 + 'px'
 		},
 		cleardanmuinterval:function(){
 			var _this = this;
@@ -237,6 +227,7 @@ var danmuboxVue_created = function(){
 			}
 			
 		},
+		//发送弹幕
 		senddanmu:function(){
 			this.setdanmu('测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕','ids2'+new Date().getTime(),'left')
 		},
@@ -403,8 +394,8 @@ var created_ = function(){
 		danmutype:'bilibili',
 		bilibilidanmudatas:[
 			//time是模拟弹幕出现时间
-			{text:'测试弹幕测试弹幕测试弹幕',id:'did1',type:'left',time:10},
-			{text:'3355226',id:'did2',type:'left',time:20},
+			{text:'测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕测试弹幕',id:'did1',type:'left',time:10},
+			{text:'3355226测试弹幕测试弹幕测试弹幕',id:'did2',type:'left',time:20},
 			{text:'3355226',id:'did3',type:'left',time:30},
 			{text:'3355226',id:'did4',type:'left',time:40},
 			{text:'3355226',id:'did5',type:'left',time:50},
@@ -463,25 +454,25 @@ var created_ = function(){
 		],
 		normaldanmudata:[
 			//time是模拟弹幕出现时间
-			{text:'测试弹幕测试弹幕测试弹幕',id:'did1',type:'left',time:10},
-			{text:'3355226asdads',id:'did2',type:'left',time:20},
-			{text:'3355226sada',id:'did3',type:'left',time:30},
-			{text:'3355226asdsadsa',id:'did4',type:'left',time:40},
-			{text:'3355226sadsad',id:'did5',type:'left',time:50},
-			{text:'3355226asdsa',id:'did6',type:'left',time:60},
-			{text:'3355226asdsaadssad',id:'did7',type:'left',time:70},//
-			{text:'3355226asdsadsad',id:'did2a',type:'left',time:520},
-			{text:'3355226sadasdas',id:'did3a',type:'left',time:530},
-			{text:'3355226asdsad',id:'did4a',type:'left',time:540},
-			{text:'3355226adsasdad',id:'did5a',type:'left',time:550},
-			{text:'3355226asdasdadasdsa',id:'did6a',type:'left',time:560},
-			{text:'3355226asdsadasd',id:'did7a',type:'left',time:570},//
-			{text:'3355226sadassadasdasd',id:'did2b',type:'left',time:920},
-			{text:'3355226asdsadsad',id:'did3b',type:'left',time:930},
-			{text:'3355226asdasd',id:'did4b',type:'left',time:940},
-			{text:'3355226asdasdasdsa',id:'did5b',type:'left',time:950},
-			{text:'3355226sadsadsadsadasda',id:'did6b',type:'left',time:960},
-			{text:'3355226asdasdsadasda',id:'did7b',type:'left',time:970},
+			{text:'测试弹幕测试弹幕测试弹幕',id:'did1',type:'left'},
+			{text:'3355226asdads',id:'did2',type:'left'},
+			{text:'3355226sada',id:'did3',type:'left'},
+			{text:'3355226asdsadsa',id:'did4',type:'left'},
+			{text:'3355226sadsad',id:'did5',type:'left'},
+			{text:'3355226asdsa',id:'did6',type:'left'},
+			{text:'3355226asdsaadssad',id:'did7',type:'left'},//
+			{text:'3355226asdsadsad',id:'did2a',type:'left'},
+			{text:'3355226sadasdas',id:'did3a',type:'left'},
+			{text:'3355226asdsad',id:'did4a',type:'left'},
+			{text:'3355226adsasdad',id:'did5a',type:'left'},
+			{text:'3355226asdasdadasdsa',id:'did6a',type:'left'},
+			{text:'3355226asdsadasd',id:'did7a',type:'left'},//
+			{text:'3355226sadassadasdasd',id:'did2b',type:'left'},
+			{text:'3355226asdsadsad',id:'did3b',type:'left'},
+			{text:'3355226asdasd',id:'did4b',type:'left'},
+			{text:'3355226asdasdasdsa',id:'did5b',type:'left'},
+			{text:'3355226sadsadsadsadasda',id:'did6b',type:'left'},
+			{text:'3355226asdasdsadasda',id:'did7b',type:'left'},
 		]
 	},
 	methods_ = {
