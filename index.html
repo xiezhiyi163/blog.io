@@ -21,6 +21,9 @@
 				min-height: 768px;
 				margin: 0 auto;
 				overflow: hidden;
+				top: -90000px;
+				transition: 0ms;
+				opacity: 0;
 			}
 			#wrap p {
 				position: absolute;
@@ -39,10 +42,14 @@
 	</head>
 	<body>
 		<script src="static/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<div id="loading" style="text-align: center;color: white;">
+			loading...
+		</div>
 		<div id="wrap">
 			<p id="desk" onclick="deskopen()"><i class="fa fa-bars"></i>&nbsp;&nbsp;&nbsp;云端展台</p>
 			<p id="blog" onclick="blogopen()"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;个人博客</p>
 		</div>
+		<img src='static/imgs/1.png' alt="" height="0" style="visibility: hidden;" onload="javascript:document.getElementById('loading').style.display = 'none';listens();setright()">
 		<script src="static/common/layer-v3.1.1/layer-v3.1.1/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var getwidthandheight = function(type){
@@ -60,7 +67,7 @@
 			}
 			var setheight = function(){
 				document.getElementById('wrap').style.height = getwidthandheight('h') + 'px'
-				document.getElementById('wrap').style.maxHeight = getwidthandheight('h') + 'px'
+				document.getElementById('wrap').style.maxHeight = getwidthandheight('h') + 'px'				
 				document.getElementById('wrap').style.maxWidth = document.getElementById('wrap').offsetHeight*14/8 + 'px'
 				document.getElementById('desk').style.top =  getwidthandheight('h')*0.4 + 'px'
 				document.getElementById('blog').style.top =  getwidthandheight('h')*0.5 + 'px'
@@ -105,15 +112,29 @@
 				},1000)
 			}
 			var listens = function(){
-				setheight()
-				_full()
-				window.addEventListener('resize',function(){
+				document.getElementById('wrap').style.top = '0';
+				setTimeout(function(){
+					document.getElementById('wrap').style.transition = '300ms'
+					document.getElementById('wrap').style.opacity = '1'
 					setheight()
 					_full()
+					window.addEventListener('resize',function(){
+						setheight()
+						_full()
+					})					
+				},0)
+			}
+			var firstlistens = function(){
+				document.getElementById('loading').style.width = getwidthandheight('w') + 'px'
+				document.getElementById('loading').style.height = getwidthandheight('h') + 'px'
+				document.getElementById('loading').style.lineHeight = getwidthandheight('h') + 'px'
+				window.addEventListener('resize',function(){
+					document.getElementById('loading').style.width = getwidthandheight('w') + 'px'
+					document.getElementById('loading').style.height = getwidthandheight('h') + 'px'
+					document.getElementById('loading').style.lineHeight = getwidthandheight('h') + 'px'
 				})
 			}
-			listens()
-			setright()
+			firstlistens()
 		</script>
 	</body>
 </html>
