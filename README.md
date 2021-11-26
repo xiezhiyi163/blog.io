@@ -32,3 +32,9 @@ https://xiezhiyi163.github.io/blog.io/responsiveDemo_maxAndMin.html
 185.199.109.153 xiezhiyi163.github.io
 185.199.110.153 xiezhiyi163.github.io
 185.199.111.153 xiezhiyi163.github.io
+
+vant ui仓库
+https://github.com/youzan/vant.git
+
+uview ui仓库
+https://github.com/umicro/uView2.0.git
