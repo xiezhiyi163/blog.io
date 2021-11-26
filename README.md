@@ -36,5 +36,8 @@ https://xiezhiyi163.github.io/blog.io/responsiveDemo_maxAndMin.html
 vant ui仓库
 https://github.com/youzan/vant.git
 
+小程序vant
+https://github.com/youzan/vant-weapp.git
+
 uview ui仓库
 https://github.com/umicro/uView2.0.git
